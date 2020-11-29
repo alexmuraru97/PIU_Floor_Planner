@@ -1,0 +1,93 @@
+﻿#include "Wall.h"
+
+Wall::Wall(int x1, int y1) :QGraphicsLineItem((qreal)x1, (qreal)y1, 0, 0)
+{
+	connections[0] = new Connection(x1,y1);
+	connections[0]->addWall(this);
+	connections[1] = new Connection(0,0);
+	connections[1]->addWall(this);
+	GlobalStats::GetGraphicsScene()->addItem(connections[0]);
+	GlobalStats::GetGraphicsScene()->addItem(connections[1]);
+	hideConnections();
+	
+}
+
+Wall::Wall(int x1, int y1, int x2, int y2) : QGraphicsLineItem((qreal)x1, (qreal)y1, (qreal)x2, (qreal)y2)
+{
+	connections[0] = new Connection(x1,y1);
+	connections[0]->addWall(this);
+	connections[1] = new Connection(x2,y2);
+	connections[1]->addWall(this);
+	GlobalStats::GetGraphicsScene()->addItem(connections[0]);
+	GlobalStats::GetGraphicsScene()->addItem(connections[1]);
+	hideConnections();
+}
+
+
+void Wall::mouseDoubleClickEvent(QGraphicsSceneMouseEvent* event)
+{
+	Wall* aux = nullptr;
+	if (showConnection)
+	{
+		
+		for(QGraphicsItem* item :GlobalStats::GetGraphicsScene()->items())
+		{
+			aux = dynamic_cast<Wall*>(item);
+			if(aux!=nullptr)
+			{
+				aux->hideConnections();
+				aux = nullptr;
+			}
+		}
+	}else
+	{
+		for (QGraphicsItem* item : GlobalStats::GetGraphicsScene()->items())
+		{
+			aux = dynamic_cast<Wall*>(item);
+			if (aux != nullptr)
+			{
+				aux->showConnections();
+				aux = nullptr;
+			}
+		}
+	}
+}
+/// <summary>
+/// 
+/// </summary>
+void Wall::updatePositions()
+{
+	this->setLine(connections[0]->getPoint().x(), (qreal)connections[0]->getPoint().y(), (qreal)connections[1]->getPoint().x(), (qreal)connections[1]->getPoint().y());
+}
+
+void Wall::hideConnections()
+{
+	showConnection = false;
+	connections[0]->hide();
+	connections[1]->hide();
+}
+
+void Wall::showConnections()
+{
+	showConnection = true;
+	connections[0]->show();
+	connections[1]->show();
+}
+
+Connection** Wall::getConnections()
+{
+	return connections;
+}
+
+
+Wall::~Wall()
+{
+	if(connections[0])
+	{
+		delete(connections[0]);
+	}
+	if (connections[1])
+	{
+		delete(connections[1]);
+	}
+}
