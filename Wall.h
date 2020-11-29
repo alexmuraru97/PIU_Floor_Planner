@@ -12,11 +12,11 @@ class Wall:public QGraphicsLineItem
 {
 private:
 	Connection *connections[2];
-	bool showConnection;
 public:
 	Wall(int x1, int y1);
 	Wall(int x1, int y1, int x2, int y2);
 	void mouseDoubleClickEvent(QGraphicsSceneMouseEvent* event) override;
+	void contextMenuEvent(QGraphicsSceneContextMenuEvent* event) override;
 	void updatePositions();
 	void hideConnections();
 	void showConnections();

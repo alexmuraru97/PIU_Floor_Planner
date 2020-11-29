@@ -27,6 +27,8 @@ DrawPanelWidget::DrawPanelWidget()
 	scene->addItem(new Wall(10, 50, 100, 140));
 	scene->addItem(new Wall(10, 70, 100, 160));
 	scene->addItem(new Wall(10, 90, 100, 180));
+	scene->addItem(new Wall(10, 110, 100, 200));
+	scene->addItem(new Wall(10, 130, 100, 220));
 	//Show whole scene
 	view->setScene(scene);
 	view->show();

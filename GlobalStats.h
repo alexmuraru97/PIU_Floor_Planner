@@ -7,6 +7,7 @@ private:
 	static int gridStep;
 	static int connRadius;
 	static QGraphicsScene* scene;
+	static bool isShowingConnections;
 public:
 	static int GetWallWidth();
 	static void SetWallWidth(int width);
@@ -16,4 +17,6 @@ public:
 	static void SetConnRadius(int radius);
 	static QGraphicsScene* GetGraphicsScene();
 	static void SetGraphicsScene(QGraphicsScene* scene);
+	static bool GetIsShowingConnections();
+	static void SetIsShowingConnections(bool val);
 };

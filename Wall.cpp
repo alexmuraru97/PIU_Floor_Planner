@@ -27,7 +27,7 @@ Wall::Wall(int x1, int y1, int x2, int y2) : QGraphicsLineItem((qreal)x1, (qreal
 void Wall::mouseDoubleClickEvent(QGraphicsSceneMouseEvent* event)
 {
 	Wall* aux = nullptr;
-	if (showConnection)
+	if (GlobalStats::GetIsShowingConnections())
 	{
 		
 		for(QGraphicsItem* item :GlobalStats::GetGraphicsScene()->items())
@@ -52,9 +52,14 @@ void Wall::mouseDoubleClickEvent(QGraphicsSceneMouseEvent* event)
 		}
 	}
 }
-/// <summary>
-/// 
-/// </summary>
+
+void Wall::contextMenuEvent(QGraphicsSceneContextMenuEvent* event)
+{
+	delete this;
+}
+
+
+
 void Wall::updatePositions()
 {
 	this->setLine(connections[0]->getPoint().x(), (qreal)connections[0]->getPoint().y(), (qreal)connections[1]->getPoint().x(), (qreal)connections[1]->getPoint().y());
@@ -62,14 +67,14 @@ void Wall::updatePositions()
 
 void Wall::hideConnections()
 {
-	showConnection = false;
+	GlobalStats::SetIsShowingConnections(false);
 	connections[0]->hide();
 	connections[1]->hide();
 }
 
 void Wall::showConnections()
 {
-	showConnection = true;
+	GlobalStats::SetIsShowingConnections(true);
 	connections[0]->show();
 	connections[1]->show();
 }
@@ -82,12 +87,26 @@ Connection** Wall::getConnections()
 
 Wall::~Wall()
 {
-	if(connections[0])
+	if (connections[0]->getWalls().size() <= 1)
 	{
-		delete(connections[0]);
+		delete connections[0];
+		connections[0] = nullptr;
 	}
-	if (connections[1])
+	else
 	{
-		delete(connections[1]);
+		connections[0]->removeWall(this);
+
 	}
+	
+	if (connections[1]->getWalls().size() <= 1)
+	{
+		delete connections[1];
+		connections[1] = nullptr;
+	}
+	else
+	{
+		connections[1]->removeWall(this);
+	}
+
+
 }

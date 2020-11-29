@@ -16,8 +16,18 @@ void Connection::addWall(Wall* wall)
 
 void Connection::removeWall(Wall* wall)
 {
-	walls.remove(wall);
+	if(walls.size()>0)
+	{
+		walls.remove(wall);
+	}
+	
+	//todo check later
+	if(walls.size()==0)
+	{
+		delete this;
+	}
 }
+
 
 list<Wall*> Connection::getWalls()
 {
@@ -73,27 +83,42 @@ void Connection::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
 			}
 			if(isValidWall)
 			{
-				list<Wall*> connWalls = toBeMerged->getWalls();
-				//parcurg lista de perti ai nodului ce trebuie scos
-				for(Wall* wall:connWalls)
+				list<Wall*> tbrWalls = toBeMerged->getWalls();
+				list<Wall*> thisWalls = this->getWalls();
+				list<Wall*> commonWalls;
+				for(Wall* thisWall:thisWalls)
 				{
-					//verifica daca conn[0] sau conn[1]sunt comune
-					Connection** conn = wall->getConnections();
-					if(conn[0]==toBeMerged)
+					for(Wall* tbrWall:tbrWalls)
 					{
-						conn[0] = this;
+						if(tbrWall->getConnections()[0]==thisWall->getConnections()[0]|| tbrWall->getConnections()[0] == thisWall->getConnections()[1]|| tbrWall->getConnections()[1] == thisWall->getConnections()[0]|| tbrWall->getConnections()[1] == thisWall->getConnections()[1])
+						{
+							commonWalls.push_back(tbrWall);
+						}
 					}
-					if(conn[1]==toBeMerged)
-					{
-						conn[1] = this;
-					}
-					//todo delete duplicate wall;
-
-					
-					this->addWall(wall);
 				}
-				delete toBeMerged;
-				toBeMerged = nullptr;
+				//if comune
+				if(commonWalls.size()==0)
+				{
+					for (Wall* wall : tbrWalls)
+					{
+						//verifica daca conn[0] sau conn[1]sunt comune
+						Connection** conn = wall->getConnections();
+						if (conn[0] == toBeMerged)
+						{
+							conn[0] = this;
+						}
+						if (conn[1] == toBeMerged)
+						{
+							conn[1] = this;
+						}
+						//todo delete duplicate wall;
+
+
+						this->addWall(wall);
+					}
+					delete toBeMerged;
+					toBeMerged = nullptr;
+				}
 			}else
 			{
 				cout << "E invalid gigel" << endl;
@@ -120,4 +145,5 @@ void Connection::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
 
 Connection::~Connection()
 {
+
 }

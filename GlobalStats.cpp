@@ -1,7 +1,8 @@
 #include "GlobalStats.h"
 int GlobalStats::wallWidth = 1;
 int GlobalStats::gridStep = 10;
-int GlobalStats::connRadius = 7;
+int GlobalStats::connRadius = 4;
+bool GlobalStats::isShowingConnections = false;
 QGraphicsScene* GlobalStats::scene = nullptr;
 
 int GlobalStats::GetWallWidth()
@@ -43,3 +44,14 @@ void GlobalStats::SetGraphicsScene(QGraphicsScene* scene)
 {
 	GlobalStats::scene = scene;
 }
+
+bool GlobalStats::GetIsShowingConnections()
+{
+	return  GlobalStats::isShowingConnections;
+}
+
+void GlobalStats::SetIsShowingConnections(bool val)
+{
+	GlobalStats::isShowingConnections = val;
+}
+
