@@ -16,3 +16,4 @@ void CustomGraphicsView::wheelEvent(QWheelEvent* event)
 		scale(0.9, 0.9);
 	}
 }
+

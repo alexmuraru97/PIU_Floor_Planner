@@ -129,6 +129,8 @@ void Connection::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
 
 void Connection::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
 {
+	GlobalStats::mousePosition.setX(event->pos().x());
+	GlobalStats::mousePosition.setY(event->pos().y());
 	if(dragOver)
 	{
 		point.setX(round(event->pos().x()/GlobalStats::GetGridStep())*GlobalStats::GetGridStep());

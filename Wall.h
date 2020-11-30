@@ -20,6 +20,7 @@ public:
 	void updatePositions();
 	void hideConnections();
 	void showConnections();
+	void setLineWidth();
 	Connection** getConnections();
 	~Wall();
 };

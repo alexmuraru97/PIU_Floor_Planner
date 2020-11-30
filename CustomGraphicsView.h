@@ -12,6 +12,5 @@ private:
 public:
 	CustomGraphicsView(QWidget* parent);
 	void wheelEvent(QWheelEvent* event) override;
-	
 };
 

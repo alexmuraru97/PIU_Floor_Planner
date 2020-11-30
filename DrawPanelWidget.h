@@ -1,7 +1,8 @@
 #pragma once
 #include <QGraphicsView>
 #include <qwidget.h>
-#include <QWheelEvent>
+#include <QMouseEvent>
+#include <QKeyEvent>
 using namespace std;
 class DrawPanelWidget :public QWidget
 {
@@ -11,7 +12,6 @@ private:
 public:
 	DrawPanelWidget();
 	void resizeEvent(QResizeEvent* event) override;
-
-	
+	void keyPressEvent(QKeyEvent* event) override;
 };
 

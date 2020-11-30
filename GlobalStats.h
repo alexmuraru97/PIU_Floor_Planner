@@ -8,7 +8,9 @@ private:
 	static int connRadius;
 	static QGraphicsScene* scene;
 	static bool isShowingConnections;
+	static QGraphicsItem* activeItem;
 public:
+	static QPoint mousePosition;
 	static int GetWallWidth();
 	static void SetWallWidth(int width);
 	static int GetGridStep();

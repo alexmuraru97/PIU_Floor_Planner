@@ -8,8 +8,14 @@ Wall::Wall(int x1, int y1) :QGraphicsLineItem((qreal)x1, (qreal)y1, 0, 0)
 	connections[1]->addWall(this);
 	GlobalStats::GetGraphicsScene()->addItem(connections[0]);
 	GlobalStats::GetGraphicsScene()->addItem(connections[1]);
-	hideConnections();
-	
+	if(GlobalStats::GetIsShowingConnections())
+	{
+		showConnections();
+	}else
+	{
+		hideConnections();
+	}
+	updatePositions();
 }
 
 Wall::Wall(int x1, int y1, int x2, int y2) : QGraphicsLineItem((qreal)x1, (qreal)y1, (qreal)x2, (qreal)y2)
@@ -20,7 +26,15 @@ Wall::Wall(int x1, int y1, int x2, int y2) : QGraphicsLineItem((qreal)x1, (qreal
 	connections[1]->addWall(this);
 	GlobalStats::GetGraphicsScene()->addItem(connections[0]);
 	GlobalStats::GetGraphicsScene()->addItem(connections[1]);
-	hideConnections();
+	if (GlobalStats::GetIsShowingConnections())
+	{
+		showConnections();
+	}
+	else
+	{
+		hideConnections();
+	}
+	updatePositions();
 }
 
 
@@ -63,6 +77,7 @@ void Wall::contextMenuEvent(QGraphicsSceneContextMenuEvent* event)
 void Wall::updatePositions()
 {
 	this->setLine(connections[0]->getPoint().x(), (qreal)connections[0]->getPoint().y(), (qreal)connections[1]->getPoint().x(), (qreal)connections[1]->getPoint().y());
+	setLineWidth();
 }
 
 void Wall::hideConnections()
@@ -77,6 +92,12 @@ void Wall::showConnections()
 	GlobalStats::SetIsShowingConnections(true);
 	connections[0]->show();
 	connections[1]->show();
+}
+
+void Wall::setLineWidth()
+{
+	QPen a(Qt::black, GlobalStats::GetWallWidth());
+	this->setPen(a);
 }
 
 Connection** Wall::getConnections()

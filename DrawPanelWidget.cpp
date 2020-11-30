@@ -15,7 +15,7 @@ DrawPanelWidget::DrawPanelWidget()
 	view->setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
 	view->setFixedWidth(this->size().width());
 	view->setFixedHeight(this->size().height());
-	view->setInteractive(true);
+	//view->setInteractive(true);
 	view->setDragMode(QGraphicsView::ScrollHandDrag);
 	view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -40,4 +40,14 @@ void DrawPanelWidget::resizeEvent(QResizeEvent* event)
 	view->setFixedWidth(this->size().width());
 	view->setFixedHeight(this->size().height());
 }
+
+void DrawPanelWidget::keyPressEvent(QKeyEvent* event)
+{
+	if(event->key()==Qt::Key_W)
+	{
+		scene->addItem(new Wall(GlobalStats::mousePosition.x()-25, GlobalStats::mousePosition.y(), GlobalStats::mousePosition.x()+25, GlobalStats::mousePosition.y()));
+	}
+
+}
+
 
