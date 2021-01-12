@@ -37,7 +37,25 @@ Wall::Wall(int x1, int y1, int x2, int y2) : QGraphicsLineItem((qreal)x1, (qreal
 	updatePositions();
 }
 
+Wall::Wall(Connection* c1, Connection* c2)
+{
+	connections[0] = c1;
+	connections[0]->addWall(this);
+	connections[1] = c2;
+	connections[1]->addWall(this);
+	if (GlobalStats::GetIsShowingConnections())
+	{
+		showConnections();
+	}
+	else
+	{
+		hideConnections();
+	}
+	updatePositions();
+}
 
+
+//Show Grabbing points on double click
 void Wall::mouseDoubleClickEvent(QGraphicsSceneMouseEvent* event)
 {
 	Wall* aux = nullptr;
@@ -67,13 +85,33 @@ void Wall::mouseDoubleClickEvent(QGraphicsSceneMouseEvent* event)
 	}
 }
 
+
+//Wall Split on Right click
 void Wall::contextMenuEvent(QGraphicsSceneContextMenuEvent* event)
 {
-	delete this;
+	Connection* midConnection = new Connection(event->pos().x(), event->pos().y());
+	Wall* newWall = new Wall(midConnection, connections[1]);
+	connections[1]->addWall(newWall);
+	connections[1]->removeWall(this);
+	GlobalStats::GetGraphicsScene()->addItem(newWall);
+	GlobalStats::GetGraphicsScene()->addItem(midConnection);
+	connections[1] = midConnection;
+	midConnection->addWall(this);
+	Wall* aux = nullptr;
+	for (QGraphicsItem* item : GlobalStats::GetGraphicsScene()->items())
+	{
+		aux = dynamic_cast<Wall*>(item);
+		if (aux != nullptr)
+		{
+			aux->showConnections();
+			aux = nullptr;
+		}
+	}
 }
 
 
 
+//Redraw Lines
 void Wall::updatePositions()
 {
 	this->setLine(connections[0]->getPoint().x(), (qreal)connections[0]->getPoint().y(), (qreal)connections[1]->getPoint().x(), (qreal)connections[1]->getPoint().y());

@@ -15,6 +15,7 @@ private:
 public:
 	Wall(int x1, int y1);
 	Wall(int x1, int y1, int x2, int y2);
+	Wall(Connection* c1, Connection* c2);
 	void mouseDoubleClickEvent(QGraphicsSceneMouseEvent* event) override;
 	void contextMenuEvent(QGraphicsSceneContextMenuEvent* event) override;
 	void updatePositions();
