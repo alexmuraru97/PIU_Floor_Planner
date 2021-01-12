@@ -186,7 +186,7 @@ void Wall::addDoor()
 {
 	Connection* left;
 	Connection* right;
-	double bottom, top;
+	double bottom, top,y1,y2;
 	if(connections[0]->getPoint().x()<=connections[1]->getPoint().x())
 	{
 		left = connections[0];
@@ -201,20 +201,24 @@ void Wall::addDoor()
 	{
 		top = right->getPoint().y();
 		bottom = left->getPoint().y();
+		y1 = (top - bottom) * 2 / 3 + bottom;
+		y2 = (top - bottom) * 1 / 3 + bottom;
 	}
 	else
 	{
 		bottom = right->getPoint().y();
 		top = left->getPoint().y();
+		y2 = (top - bottom) * 2 / 3 + bottom;
+		y1 = (top - bottom) * 1 / 3 + bottom;
 	}
 	double slope = (right->getPoint().y() - left->getPoint().y())*1.0 / (1.0*(right->getPoint().x() - left->getPoint().x()));
 	double x1 = (right->getPoint().x() - left->getPoint().x()) / 3 + left->getPoint().x();
 	double x2 = (right->getPoint().x() - left->getPoint().x())* 2 / 3 + left->getPoint().x();
 
-	double ymax = (top - bottom) * 1 / 3 + bottom;
+
+
 	
-		
-	scene()->addRect(QRectF(x1,ymax , x2 - x1, (top-bottom)/3));
+	scene()->addRect(QRectF(x1,y1<y2?y1:y2 , x2 - x1, (top-bottom)/3));
 	scene()->update();
 	//TODO COMPLETE HERE
 }
