@@ -24,5 +24,6 @@ public:
 	void setLineWidth();
 	bool containsConnection(Connection* conn);
 	Connection** getConnections();
+	void addDoor();
 	~Wall();
 };

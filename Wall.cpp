@@ -182,6 +182,43 @@ Connection** Wall::getConnections()
 	return connections;
 }
 
+void Wall::addDoor()
+{
+	Connection* left;
+	Connection* right;
+	double bottom, top;
+	if(connections[0]->getPoint().x()<=connections[1]->getPoint().x())
+	{
+		left = connections[0];
+		right = connections[1];
+	}
+	else
+	{
+		left = connections[1];
+		right = connections[0];
+	}
+	if (right->getPoint().y() >= left->getPoint().y())
+	{
+		top = right->getPoint().y();
+		bottom = left->getPoint().y();
+	}
+	else
+	{
+		bottom = right->getPoint().y();
+		top = left->getPoint().y();
+	}
+	double slope = (right->getPoint().y() - left->getPoint().y())*1.0 / (1.0*(right->getPoint().x() - left->getPoint().x()));
+	double x1 = (right->getPoint().x() - left->getPoint().x()) / 3 + left->getPoint().x();
+	double x2 = (right->getPoint().x() - left->getPoint().x())* 2 / 3 + left->getPoint().x();
+
+	double ymax = (top - bottom) * 1 / 3 + bottom;
+	
+		
+	scene()->addRect(QRectF(x1,ymax , x2 - x1, (top-bottom)/3));
+	scene()->update();
+	//TODO COMPLETE HERE
+}
+
 
 Wall::~Wall()
 {

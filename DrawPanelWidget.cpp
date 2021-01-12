@@ -61,7 +61,12 @@ void DrawPanelWidget::keyPressEvent(QKeyEvent* event)
 	}
 	else if (event->key() == Qt::Key_D)
 	{
-		scene->addItem(new Door(mousePoint.x(), mousePoint.y(), 150, 150));
+		QGraphicsItem* it = scene->itemAt(mousePoint, QTransform());
+		if (dynamic_cast<Wall*>(it) != nullptr)
+		{
+			dynamic_cast<Wall*>(it)->addDoor();
+			//TODO ADD DOOR ON THIS WALL
+		}
 	}
 	
 }

@@ -21,16 +21,44 @@ void Connection::removeWall(Wall* wall)
 		connectedItems.remove(wall);
 	}
 	
-	//todo check later
-	if(getWallCount()==0)
+	if(getItems().size()==0)
 	{
 		delete this;
 	}
 }
 
+void Connection::addDoor(Door* door)
+{
+	connectedItems.push_back(door);
+}
+
+void Connection::removeDoor(Door* door)
+{
+	if (getDoorCount() > 0)
+	{
+		connectedItems.remove(door);
+	}
+
+	if (getItemCount() == 0)
+	{
+		delete this;
+	}
+}
+
+
+int Connection::getDoorCount()
+{
+	return getDoors().size();
+}
+
 int Connection::getWallCount()
 {
 	return getWalls().size();
+}
+
+int Connection::getItemCount()
+{
+	return connectedItems.size();
 }
 
 
@@ -46,6 +74,25 @@ list<Wall*> Connection::getWalls()
 	}
 	return temp;
 }
+
+list<Door*> Connection::getDoors()
+{
+	list<Door*> temp;
+	for (QGraphicsItem* item : connectedItems)
+	{
+		if (dynamic_cast<Door*>(item) != nullptr)
+		{
+			temp.push_back(dynamic_cast<Door*>(item));
+		}
+	}
+	return temp;
+}
+
+list<QGraphicsItem*> Connection::getItems()
+{
+	return this->connectedItems;
+}
+
 
 QPoint Connection::getPoint()
 {
