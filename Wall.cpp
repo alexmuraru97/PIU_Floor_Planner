@@ -76,7 +76,6 @@ void Wall::mouseDoubleClickEvent(QGraphicsSceneMouseEvent* event)
 					tempConn->addWall(this);
 					connections[0] = tempConn;
 					GlobalStats::GetGraphicsScene()->addItem(tempConn);
-					updatePositions();
 				}
 			}
 			else
@@ -88,7 +87,6 @@ void Wall::mouseDoubleClickEvent(QGraphicsSceneMouseEvent* event)
 					tempConn->addWall(this);
 					connections[1] = tempConn;
 					GlobalStats::GetGraphicsScene()->addItem(tempConn);
-					updatePositions();
 				}
 			}
 
@@ -116,6 +114,7 @@ void Wall::mouseDoubleClickEvent(QGraphicsSceneMouseEvent* event)
 			}
 		}
 	}
+	updatePositions();
 }
 
 

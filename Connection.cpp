@@ -11,18 +11,18 @@ Connection::Connection(int x, int y):QGraphicsEllipseItem()
 
 void Connection::addWall(Wall* wall)
 {
-	walls.push_back(wall);
+	connectedItems.push_back(wall);
 }
 
 void Connection::removeWall(Wall* wall)
 {
-	if(walls.size()>0)
+	if(getWallCount()>0)
 	{
-		walls.remove(wall);
+		connectedItems.remove(wall);
 	}
 	
 	//todo check later
-	if(walls.size()==0)
+	if(getWallCount()==0)
 	{
 		delete this;
 	}
@@ -30,13 +30,21 @@ void Connection::removeWall(Wall* wall)
 
 int Connection::getWallCount()
 {
-	return walls.size();
+	return getWalls().size();
 }
 
 
 list<Wall*> Connection::getWalls()
 {
-	return this->walls;
+	list<Wall*> temp;
+	for(QGraphicsItem* item: connectedItems)
+	{
+		if(dynamic_cast<Wall*>(item)!=nullptr)
+		{
+			temp.push_back(dynamic_cast<Wall*>(item));
+		}
+	}
+	return temp;
 }
 
 QPoint Connection::getPoint()
@@ -125,7 +133,7 @@ void Connection::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
 				}
 			}
 		}
-		for(Wall* wall:walls)
+		for(Wall* wall:getWalls())
 		{
 			wall->updatePositions();
 		}
@@ -163,7 +171,7 @@ void Connection::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
 		point.setX(round(event->pos().x()/GlobalStats::GetGridStep())*GlobalStats::GetGridStep());
 		point.setY(round(event->pos().y()/GlobalStats::GetGridStep())*GlobalStats::GetGridStep());
 		this->setRect(QRectF(point.x() - GlobalStats::GetConnRadius() / 2.0, point.y() - GlobalStats::GetConnRadius() / 2.0, GlobalStats::GetConnRadius(), GlobalStats::GetConnRadius()));
-		for (Wall* wall : walls)
+		for (Wall* wall : getWalls())
 		{
 			wall->updatePositions();
 		}
