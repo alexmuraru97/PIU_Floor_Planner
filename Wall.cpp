@@ -65,7 +65,6 @@ void Wall::mouseDoubleClickEvent(QGraphicsSceneMouseEvent* event)
 		//Compute the distance to both Connection points of wall
 		double distPoint1 = sqrt(pow(connections[0]->getPoint().x() - event->pos().x(), 2.0) + pow(connections[0]->getPoint().y() - event->pos().y(), 2));
 		double distPoint2 = sqrt(pow(connections[1]->getPoint().x() - event->pos().x(), 2.0) + pow(connections[1]->getPoint().y() - event->pos().y(), 2));
-		
 		if((distPoint1<GlobalStats::GetConnRadius()*1.5)||distPoint2< (GlobalStats::GetConnRadius() * 1.5))
 		{
 			if (distPoint1 < distPoint2)
@@ -157,6 +156,7 @@ void Wall::hideConnections()
 	GlobalStats::SetIsShowingConnections(false);
 	connections[0]->hide();
 	connections[1]->hide();
+	GlobalStats::ToggleOffPropertyMenu();
 }
 
 void Wall::showConnections()
@@ -164,6 +164,7 @@ void Wall::showConnections()
 	GlobalStats::SetIsShowingConnections(true);
 	connections[0]->show();
 	connections[1]->show();
+	GlobalStats::ToggleOnPropertyMenu();
 }
 
 void Wall::setLineWidth()

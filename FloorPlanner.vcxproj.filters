@@ -28,6 +28,11 @@
     <Filter Include="Sources\LeftPanelStack">
       <UniqueIdentifier>{21c3a89e-e2e7-4a85-9098-2a0a50d86dbe}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+      <ParseFiles>true</ParseFiles>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Connection.h">
@@ -61,6 +66,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Wall.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Door.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -114,6 +125,12 @@
     </ClCompile>
     <ClCompile Include="UtilitiesGrid.cpp">
       <Filter>Sources\LeftPanelStack</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>Sources\Scene Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Door.cpp">
+      <Filter>Sources\Scene Elements</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

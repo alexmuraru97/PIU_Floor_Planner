@@ -5,15 +5,16 @@
 #include "MenuWidget.h"
 #include "InOutMenuWidget.h"
 #include "DrawPanelWidget.h"
-
+#include "GlobalStats.h"
 int main(int argc, char* argv[])
 {
 	QApplication app(argc, argv);
 	QWidget* window = new QWidget;
 	window->setMinimumSize(1920, 1080);
-	//window->setMinimumSize(1080	, 720);
-	//window->showMaximized();
+	GlobalStats::SetDoorIcon("./Assets/DrawIcons/Door.png");
+	GlobalStats::SetWindowIcon("./Assets/DrawIcons/Window.png");
 
+	
 	QHBoxLayout* hlayout = new QHBoxLayout();
 	QVBoxLayout* leftPanel = new QVBoxLayout();
 	QVBoxLayout* rightPanel = new QVBoxLayout();
@@ -38,6 +39,7 @@ int main(int argc, char* argv[])
 	rightPanel->addWidget(drawPanelWidget);
 
 
+	
 	window->show();
 	return app.exec();
 }

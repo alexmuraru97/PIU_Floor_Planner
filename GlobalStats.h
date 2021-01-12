@@ -1,17 +1,22 @@
 #pragma once
 #include <QGraphicsScene>
 #include "UtilitiesGrid.h"
+#include "UtilityPanelWidget.h"
+
 class GlobalStats
 {
-private:
 	static int wallWidth;
 	static int gridStep;
 	static int connRadius;
 	static QGraphicsScene* scene;
 	static bool isShowingConnections;
-	static QGraphicsItem* activeItem;
 	static UtilitiesGrid* propertyPanelHolder;
+	static int propertyPanelIndex;
 	static int oldPanelIndex;
+	static bool togglePropertyStatus;
+	static UtilityPanelWidget* leftMenuPanel;
+	static QString doorIcon;
+	static QString windowIcon;
 public:
 	static QPoint mousePosition;
 	static int GetWallWidth();
@@ -28,4 +33,14 @@ public:
 	static void SetPropertyPanelHolder(UtilitiesGrid* uGrid);
 	static void SetOldPanelIndex(int idx);
 	static int GetOldPanelIndex();
+	static void SetPropertyPanelIndex(int idx);
+	static int GetPropertyPanelIndex();
+	static void SetLeftMenuPanel(UtilityPanelWidget* panel);
+	static void ToggleOnPropertyMenu();
+	static void ToggleOffPropertyMenu();
+	static void SetDoorIcon(QString path);
+	static QString GetDoorIcon();
+	static void SetWindowIcon(QString path);
+	static QString GetWindowIcon();
+	static bool GetTogglePropertyStatus();
 };

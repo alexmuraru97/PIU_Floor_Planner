@@ -1,8 +1,5 @@
 #include "DrawPanelWidget.h"
-#include <iostream>
-#include "Wall.h"
-#include "GlobalStats.h"
-#include "CustomGraphicsView.h"
+
 
 DrawPanelWidget::DrawPanelWidget()
 {
@@ -25,7 +22,6 @@ DrawPanelWidget::DrawPanelWidget()
 	scene->addItem(new Wall(10, 10, 100, 100));
 	scene->addItem(new Wall(10, 30, 100, 120));
 	scene->addItem(new Wall(10, 50, 100, 140));
-
 	//Show whole scene
 	view->setScene(scene);
 	view->show();
@@ -63,8 +59,11 @@ void DrawPanelWidget::keyPressEvent(QKeyEvent* event)
 			temp = nullptr;
 		}
 	}
+	else if (event->key() == Qt::Key_D)
+	{
+		scene->addItem(new Door(mousePoint.x(), mousePoint.y(), 150, 150));
+	}
 	
-
 }
 
 
