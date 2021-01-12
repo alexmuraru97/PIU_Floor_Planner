@@ -191,11 +191,7 @@ void Connection::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
 	{
 		if (dynamic_cast<Wall*>(item) != nullptr && !(dynamic_cast<Wall*>(item)->containsConnection(this)))
 		{
-			//this-> Connexiunea mea
-			//wall-> peretele pe care ajung
 			Wall* wall = dynamic_cast<Wall*>(item);
-			//wall ->conn1=this
-
 			Wall* newWall = new Wall(this, wall->getConnections()[1]);
 			wall->getConnections()[1] = this;
 			this->addWall(wall);
@@ -206,7 +202,6 @@ void Connection::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
 			break;
 		}
 	}
-	//Daca fac merge pe alt wall
 }
 
 void Connection::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
@@ -221,6 +216,10 @@ void Connection::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
 		for (Wall* wall : getWalls())
 		{
 			wall->updatePositions();
+		}
+		for (Door* door : getDoors())
+		{
+			door->updatePositions();
 		}
 	}
 }

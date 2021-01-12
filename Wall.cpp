@@ -201,15 +201,15 @@ void Wall::addDoor()
 	{
 		top = right->getPoint().y();
 		bottom = left->getPoint().y();
-		y1 = (top - bottom) * 2 / 3 + bottom;
-		y2 = (top - bottom) * 1 / 3 + bottom;
+		y2 = (top - bottom) * 2 / 3 + bottom;
+		y1 = (top - bottom) * 1 / 3 + bottom;
 	}
 	else
 	{
 		bottom = right->getPoint().y();
 		top = left->getPoint().y();
-		y2 = (top - bottom) * 2 / 3 + bottom;
-		y1 = (top - bottom) * 1 / 3 + bottom;
+		y1 = (top - bottom) * 2 / 3 + bottom;
+		y2 = (top - bottom) * 1 / 3 + bottom;
 	}
 	double slope = (right->getPoint().y() - left->getPoint().y())*1.0 / (1.0*(right->getPoint().x() - left->getPoint().x()));
 	double x1 = (right->getPoint().x() - left->getPoint().x()) / 3 + left->getPoint().x();
@@ -217,10 +217,25 @@ void Wall::addDoor()
 
 
 
+	Connection* conn1 = new Connection(x1, y1);
+	Connection* conn2 = new Connection(x2, y2);
+
+	Wall* tempWall = new Wall(conn2,this->connections[1]);
+	this->connections[1]->removeWall(this);
+
+	conn1->addWall(this);
+	this->connections[1] = conn1;
 	
-	scene()->addRect(QRectF(x1,y1<y2?y1:y2 , x2 - x1, (top-bottom)/3));
+	scene()->addItem(tempWall);
+	scene()->addItem(conn2);
+	scene()->addItem(conn1);
+
+	this->updatePositions();
+	tempWall->updatePositions();
 	scene()->update();
-	//TODO COMPLETE HERE
+	
+	//TODO ADD DOOR RELATIVE TO CONN1 CONN2
+	scene()->addItem(new Door(conn1, conn2));
 }
 
 

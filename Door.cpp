@@ -9,8 +9,24 @@ Door::Door(Connection* c1, Connection* c2)
 	connections[1] = c2;
 	c1->addDoor(this);
 	c2->addDoor(this);
-	this->setPixmap(QPixmap::fromImage(img.scaled(abs(c1->getPoint().x()-c2->getPoint().x()), abs(c1->getPoint().y() - c2->getPoint().y()), Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation)));
-	this->setPos((c1->getPoint().x() + c2->getPoint().x())/2, (c1->getPoint().y() - c2->getPoint().y())/2);
+
+
+	
+
+	
+}
+
+double Door::calculateRotation()
+{
+	return 0;
+	//return atan((connections[0]->getPoint().y() - connections[1]->getPoint().y())*1.0 / (1.0*(connections[1]->getPoint().x() - connections[0]->getPoint().x())));
+}
+
+void Door::updatePositions()
+{
+	//TODO IMPLEMENT THIS
+	cout << calculateRotation() << endl;
+	//cout << "updating doors" << endl;
 }
 
 
