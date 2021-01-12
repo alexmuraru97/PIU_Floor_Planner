@@ -19,5 +19,6 @@ void MenuButton::leaveEvent(QEvent* event)
 bool MenuButton::hitButton(const QPoint& pos) const
 {
 	panel->setCurrentIndex(index);
+	GlobalStats::SetOldPanelIndex(index);
 	return true;
 }

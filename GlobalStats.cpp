@@ -2,7 +2,9 @@
 int GlobalStats::wallWidth = 2;
 int GlobalStats::gridStep = 2;
 int GlobalStats::connRadius = 4;
+int GlobalStats::oldPanelIndex = 1;
 bool GlobalStats::isShowingConnections = false;
+UtilitiesGrid* GlobalStats::propertyPanelHolder=nullptr;
 QGraphicsScene* GlobalStats::scene = nullptr;
 QPoint GlobalStats::mousePosition(0,0);
 
@@ -54,6 +56,26 @@ bool GlobalStats::GetIsShowingConnections()
 void GlobalStats::SetIsShowingConnections(bool val)
 {
 	GlobalStats::isShowingConnections = val;
+}
+
+void GlobalStats::ShowPropertyPanel(QWidget* pPanel)
+{
+	//TODO
+}
+
+void GlobalStats::SetPropertyPanelHolder(UtilitiesGrid* uGrid)
+{
+	GlobalStats::propertyPanelHolder = uGrid;
+}
+
+void GlobalStats::SetOldPanelIndex(int idx)
+{
+	GlobalStats::oldPanelIndex = idx;
+}
+
+int GlobalStats::GetOldPanelIndex()
+{
+	return GlobalStats::oldPanelIndex;
 }
 
 

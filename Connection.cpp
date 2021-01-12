@@ -125,6 +125,10 @@ void Connection::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
 				}
 			}
 		}
+		for(Wall* wall:walls)
+		{
+			wall->updatePositions();
+		}
 		return;
 	}
 	

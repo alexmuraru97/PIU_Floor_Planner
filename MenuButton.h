@@ -1,6 +1,7 @@
 #pragma once
 #include <qpushbutton.h>
 #include  <QStackedWidget>
+#include "GlobalStats.h"
 class MenuButton :public QPushButton
 {
 private:

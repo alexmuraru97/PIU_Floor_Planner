@@ -1,5 +1,6 @@
 #pragma once
 #include <QGraphicsScene>
+#include "UtilitiesGrid.h"
 class GlobalStats
 {
 private:
@@ -9,6 +10,8 @@ private:
 	static QGraphicsScene* scene;
 	static bool isShowingConnections;
 	static QGraphicsItem* activeItem;
+	static UtilitiesGrid* propertyPanelHolder;
+	static int oldPanelIndex;
 public:
 	static QPoint mousePosition;
 	static int GetWallWidth();
@@ -21,4 +24,8 @@ public:
 	static void SetGraphicsScene(QGraphicsScene* scene);
 	static bool GetIsShowingConnections();
 	static void SetIsShowingConnections(bool val);
+	static void ShowPropertyPanel(QWidget* pPanel);
+	static void SetPropertyPanelHolder(UtilitiesGrid* uGrid);
+	static void SetOldPanelIndex(int idx);
+	static int GetOldPanelIndex();
 };

@@ -19,20 +19,14 @@
     <Filter Include="Sources\Custom QT Widgets">
       <UniqueIdentifier>{0a19c9ec-dc76-4acd-978b-f13b21bae75b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Sources\DrawPage">
-      <UniqueIdentifier>{21c3a89e-e2e7-4a85-9098-2a0a50d86dbe}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Sources\Scene">
       <UniqueIdentifier>{cbc649c9-0471-4480-ba4c-0790c453e43e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Sources\TopBar">
       <UniqueIdentifier>{2b38146c-5231-4133-b2d5-0159d30aa4d9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Sources\LabelPage">
-      <UniqueIdentifier>{f27ab81c-7f1a-45d8-8733-ff04b542ce86}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Sources\Furniture">
-      <UniqueIdentifier>{99ade63c-4783-4770-8025-3884912710d0}</UniqueIdentifier>
+    <Filter Include="Sources\LeftPanelStack">
+      <UniqueIdentifier>{21c3a89e-e2e7-4a85-9098-2a0a50d86dbe}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -101,7 +95,7 @@
       <Filter>Sources\Custom QT Widgets</Filter>
     </ClCompile>
     <ClCompile Include="UtilitiesDraw.cpp">
-      <Filter>Sources\DrawPage</Filter>
+      <Filter>Sources\LeftPanelStack</Filter>
     </ClCompile>
     <ClCompile Include="DrawPanelWidget.cpp">
       <Filter>Sources\Scene</Filter>
@@ -109,17 +103,17 @@
     <ClCompile Include="InOutMenuWidget.cpp">
       <Filter>Sources\TopBar</Filter>
     </ClCompile>
-    <ClCompile Include="UtilitiesLabel.cpp">
-      <Filter>Sources\LabelPage</Filter>
-    </ClCompile>
-    <ClCompile Include="UtilitiesGrid.cpp">
-      <Filter>Sources\Scene Elements</Filter>
-    </ClCompile>
-    <ClCompile Include="UtilitiesFurniture.cpp">
-      <Filter>Sources\Furniture</Filter>
-    </ClCompile>
     <ClCompile Include="UtilityPanelWidget.cpp">
       <Filter>Sources\Custom QT Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="UtilitiesFurniture.cpp">
+      <Filter>Sources\LeftPanelStack</Filter>
+    </ClCompile>
+    <ClCompile Include="UtilitiesLabel.cpp">
+      <Filter>Sources\LeftPanelStack</Filter>
+    </ClCompile>
+    <ClCompile Include="UtilitiesGrid.cpp">
+      <Filter>Sources\LeftPanelStack</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

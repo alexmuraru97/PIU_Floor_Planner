@@ -6,7 +6,6 @@
 #include "InOutMenuWidget.h"
 #include "DrawPanelWidget.h"
 
-
 int main(int argc, char* argv[])
 {
 	QApplication app(argc, argv);
@@ -24,7 +23,7 @@ int main(int argc, char* argv[])
 	
 
 	UtilityPanelWidget* utilityPanelWidget = new UtilityPanelWidget();
-	
+
 	MenuWidget* menuWidget = new MenuWidget(utilityPanelWidget);
 	
 	InOutMenuWidget* inOutMenuWidget = new InOutMenuWidget();
