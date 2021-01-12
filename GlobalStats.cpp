@@ -1,6 +1,6 @@
 #include "GlobalStats.h"
 int GlobalStats::wallWidth = 2;
-int GlobalStats::gridStep = 10;
+int GlobalStats::gridStep = 2;
 int GlobalStats::connRadius = 4;
 bool GlobalStats::isShowingConnections = false;
 QGraphicsScene* GlobalStats::scene = nullptr;

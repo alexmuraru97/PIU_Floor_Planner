@@ -58,6 +58,7 @@ void Connection::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
 
 	QList<QGraphicsItem*>itemList=scene()->collidingItems(this, Qt::IntersectsItemShape);
 
+	//Daca fac merge pe alt Connection
 	Connection* toBeMerged=nullptr;
 	for(QGraphicsItem*item: itemList)
 	{
@@ -116,20 +117,37 @@ void Connection::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
 						{
 							conn[1] = this;
 						}
-						//todo delete duplicate wall;
-
 
 						this->addWall(wall);
 					}
 					delete toBeMerged;
 					toBeMerged = nullptr;
 				}
-			}else
-			{
-				cout << "E invalid gigel" << endl;
 			}
 		}
+		return;
 	}
+	
+	for (QGraphicsItem* item : itemList)
+	{
+		if (dynamic_cast<Wall*>(item) != nullptr && !(dynamic_cast<Wall*>(item)->containsConnection(this)))
+		{
+			//this-> Connexiunea mea
+			//wall-> peretele pe care ajung
+			Wall* wall = dynamic_cast<Wall*>(item);
+			//wall ->conn1=this
+
+			Wall* newWall = new Wall(this, wall->getConnections()[1]);
+			wall->getConnections()[1] = this;
+			this->addWall(wall);
+			GlobalStats::GetGraphicsScene()->addItem(newWall);
+			wall->updatePositions();
+			newWall->updatePositions();
+			
+			break;
+		}
+	}
+	//Daca fac merge pe alt wall
 }
 
 void Connection::mouseMoveEvent(QGraphicsSceneMouseEvent* event)

@@ -22,6 +22,7 @@ public:
 	void hideConnections();
 	void showConnections();
 	void setLineWidth();
+	bool containsConnection(Connection* conn);
 	Connection** getConnections();
 	~Wall();
 };

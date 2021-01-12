@@ -172,6 +172,11 @@ void Wall::setLineWidth()
 	this->setPen(a);
 }
 
+bool Wall::containsConnection(Connection* conn)
+{
+	return connections[0] == conn || connections[1] == conn;
+}
+
 Connection** Wall::getConnections()
 {
 	return connections;
