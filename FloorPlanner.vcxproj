@@ -14,7 +14,6 @@
     <ClInclude Include="Connection.h" />
     <ClInclude Include="CustomGraphicsView.h" />
     <ClInclude Include="DrawPanelWidget.h" />
-    <ClInclude Include="Floor.h" />
     <ClInclude Include="GlobalStats.h" />
     <ClInclude Include="InOutMenuWidget.h" />
     <ClInclude Include="MenuButton.h" />
@@ -25,20 +24,17 @@
     <ClInclude Include="Wall.h" />
     <QtMoc Include="UtilitiesLabel.h" />
     <QtMoc Include="UtilitiesFurniture.h" />
-    <QtMoc Include="UtilitiesFloor.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Connection.cpp" />
     <ClCompile Include="CustomGraphicsView.cpp" />
     <ClCompile Include="DrawPanelWidget.cpp" />
-    <ClCompile Include="Floor.cpp" />
     <ClCompile Include="GlobalStats.cpp" />
     <ClCompile Include="InOutMenuWidget.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MenuButton.cpp" />
     <ClCompile Include="MenuWidget.cpp" />
     <ClCompile Include="UtilitiesDraw.cpp" />
-    <ClCompile Include="UtilitiesFloor.cpp" />
     <ClCompile Include="UtilitiesFurniture.cpp" />
     <ClCompile Include="UtilitiesGrid.cpp" />
     <ClCompile Include="UtilitiesLabel.cpp" />

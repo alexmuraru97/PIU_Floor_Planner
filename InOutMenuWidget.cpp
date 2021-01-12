@@ -18,33 +18,20 @@ InOutMenuWidget::InOutMenuWidget()
 	hlayout->setAlignment(Qt::AlignLeft);
 
 
-	MenuButton* save = new MenuButton(stack, 0, this);
-	save->setText("Save");
-	save->setFixedSize(90, 40);
-	save->setStyleSheet("border-width: 2px; border-radius: 20px");
-
-
-	MenuButton* undo = new MenuButton(stack, 1, this);
-	undo->setText("Undo");
-	undo->setFixedSize(90, 40);
-	undo->setStyleSheet("border-width: 2px; border-radius: 20px");
-
-	MenuButton* clear = new MenuButton(stack, 2, this);
+	MenuButton* clear = new MenuButton(stack, 1, this);
 	clear->setText("Clear");
 	clear->setFixedSize(90, 40);
 	clear->setStyleSheet("border-width: 2px; border-radius: 20px");
 
-	MenuButton* exp = new MenuButton(stack, 3, this);
+	MenuButton* exp = new MenuButton(stack, 2, this);
 	exp->setText("Export");
 	exp->setFixedSize(90, 40);
 	exp->setStyleSheet("border-width: 2px; border-radius: 20px");
 
 	this->setLayout(hlayout);
 
-	hlayout->insertWidget(0, save);
-	hlayout->insertWidget(1, undo);
-	hlayout->insertWidget(2, clear);
-	hlayout->insertWidget(3, exp);
+	hlayout->insertWidget(1, clear);
+	hlayout->insertWidget(2, exp);
 
 	this->show();
 }

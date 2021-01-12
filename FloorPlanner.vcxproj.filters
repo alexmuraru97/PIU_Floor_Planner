@@ -13,6 +13,27 @@
     <Filter Include="Sources">
       <UniqueIdentifier>{86c23c7f-42e1-46c0-8c7e-d31459c179fc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sources\Scene Elements">
+      <UniqueIdentifier>{ea77573c-df9d-4963-b279-ef1b5d35ca4d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Custom QT Widgets">
+      <UniqueIdentifier>{0a19c9ec-dc76-4acd-978b-f13b21bae75b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\DrawPage">
+      <UniqueIdentifier>{21c3a89e-e2e7-4a85-9098-2a0a50d86dbe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Scene">
+      <UniqueIdentifier>{cbc649c9-0471-4480-ba4c-0790c453e43e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\TopBar">
+      <UniqueIdentifier>{2b38146c-5231-4133-b2d5-0159d30aa4d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\LabelPage">
+      <UniqueIdentifier>{f27ab81c-7f1a-45d8-8733-ff04b542ce86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Furniture">
+      <UniqueIdentifier>{99ade63c-4783-4770-8025-3884912710d0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Connection.h">
@@ -22,9 +43,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DrawPanelWidget.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Floor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GlobalStats.h">
@@ -53,9 +71,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="UtilitiesFloor.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
     <QtMoc Include="UtilitiesFurniture.h">
       <Filter>Header Files</Filter>
     </QtMoc>
@@ -64,53 +79,47 @@
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Wall.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="UtilityPanelWidget.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="UtilitiesLabel.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="UtilitiesGrid.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="UtilitiesFurniture.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="UtilitiesFloor.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="UtilitiesDraw.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="MenuWidget.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="MenuButton.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
-    <ClCompile Include="InOutMenuWidget.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
     <ClCompile Include="GlobalStats.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="Floor.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="DrawPanelWidget.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="CustomGraphicsView.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="Connection.cpp">
-      <Filter>Sources</Filter>
+      <Filter>Sources\Scene Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Wall.cpp">
+      <Filter>Sources\Scene Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuButton.cpp">
+      <Filter>Sources\Custom QT Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuWidget.cpp">
+      <Filter>Sources\Custom QT Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="UtilitiesDraw.cpp">
+      <Filter>Sources\DrawPage</Filter>
+    </ClCompile>
+    <ClCompile Include="DrawPanelWidget.cpp">
+      <Filter>Sources\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="InOutMenuWidget.cpp">
+      <Filter>Sources\TopBar</Filter>
+    </ClCompile>
+    <ClCompile Include="UtilitiesLabel.cpp">
+      <Filter>Sources\LabelPage</Filter>
+    </ClCompile>
+    <ClCompile Include="UtilitiesGrid.cpp">
+      <Filter>Sources\Scene Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="UtilitiesFurniture.cpp">
+      <Filter>Sources\Furniture</Filter>
+    </ClCompile>
+    <ClCompile Include="UtilityPanelWidget.cpp">
+      <Filter>Sources\Custom QT Widgets</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

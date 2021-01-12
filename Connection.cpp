@@ -50,7 +50,7 @@ void Connection::mousePressEvent(QGraphicsSceneMouseEvent* event)
 void Connection::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
 {
 	dragOver = false;
-	QList<QGraphicsItem*> sc = GlobalStats::GetGraphicsScene()->items();
+
 	QList<QGraphicsItem*>itemList=scene()->collidingItems(this, Qt::IntersectsItemShape);
 
 	Connection* toBeMerged=nullptr;
