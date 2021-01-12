@@ -61,14 +61,48 @@ void Wall::mouseDoubleClickEvent(QGraphicsSceneMouseEvent* event)
 	Wall* aux = nullptr;
 	if (GlobalStats::GetIsShowingConnections())
 	{
+
+		//Compute the distance to both Connection points of wall
+		double distPoint1 = sqrt(pow(connections[0]->getPoint().x() - event->pos().x(), 2.0) + pow(connections[0]->getPoint().y() - event->pos().y(), 2));
+		double distPoint2 = sqrt(pow(connections[1]->getPoint().x() - event->pos().x(), 2.0) + pow(connections[1]->getPoint().y() - event->pos().y(), 2));
 		
-		for(QGraphicsItem* item :GlobalStats::GetGraphicsScene()->items())
+		if((distPoint1<GlobalStats::GetConnRadius()*1.5)||distPoint2< (GlobalStats::GetConnRadius() * 1.5))
 		{
-			aux = dynamic_cast<Wall*>(item);
-			if(aux!=nullptr)
+			if (distPoint1 < distPoint2)
 			{
-				aux->hideConnections();
-				aux = nullptr;
+				if (connections[0]->getWallCount() > 1)
+				{
+					connections[0]->removeWall(this);
+					Connection* tempConn = new Connection(event->pos().x(), event->pos().y());
+					tempConn->addWall(this);
+					connections[0] = tempConn;
+					GlobalStats::GetGraphicsScene()->addItem(tempConn);
+					updatePositions();
+				}
+			}
+			else
+			{
+				if (connections[1]->getWallCount() > 1)
+				{
+					connections[1]->removeWall(this);
+					Connection* tempConn = new Connection(event->pos().x(), event->pos().y());
+					tempConn->addWall(this);
+					connections[1] = tempConn;
+					GlobalStats::GetGraphicsScene()->addItem(tempConn);
+					updatePositions();
+				}
+			}
+
+		}else
+		{
+			for (QGraphicsItem* item : GlobalStats::GetGraphicsScene()->items())
+			{
+				aux = dynamic_cast<Wall*>(item);
+				if (aux != nullptr)
+				{
+					aux->hideConnections();
+					aux = nullptr;
+				}
 			}
 		}
 	}else

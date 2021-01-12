@@ -3,7 +3,7 @@
 #include "GlobalStats.h"
 #include <QPainter>
 #include <QGraphicsScene>
-
+#include <math.h>
 //Circular dependency
 class Wall;
 #include "Connection.h"

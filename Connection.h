@@ -19,11 +19,11 @@ public:
 	Connection(int x, int y);
 	void addWall(Wall* wall);
 	void removeWall(Wall* wall);
+	int getWallCount();
 	list<Wall*> getWalls();
 	QPoint getPoint();
 	void mousePressEvent(QGraphicsSceneMouseEvent* event) override;
 	void mouseReleaseEvent(QGraphicsSceneMouseEvent* event) override;
 	void mouseMoveEvent(QGraphicsSceneMouseEvent* event) override;
-	//void contextMenuEvent(QGraphicsSceneContextMenuEvent* event) override;
 	~Connection();
 };

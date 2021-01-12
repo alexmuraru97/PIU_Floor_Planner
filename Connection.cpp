@@ -28,6 +28,11 @@ void Connection::removeWall(Wall* wall)
 	}
 }
 
+int Connection::getWallCount()
+{
+	return walls.size();
+}
+
 
 list<Wall*> Connection::getWalls()
 {
