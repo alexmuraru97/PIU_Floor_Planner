@@ -9,8 +9,8 @@ Door::Door(Connection* c1, Connection* c2)
 	
 	connections[0] = c1;
 	connections[1] = c2;
-	c1->addDoor(this);
-	c2->addDoor(this);
+	c1->addWallItem(this);
+	c2->addWallItem(this);
 
 	updatePositions();
 }
@@ -49,7 +49,7 @@ void Door::deatach()
 {
 	try
 	{
-		connections[0]->removeDoor(this);
+		connections[0]->removeWallItem(this);
 	}
 	catch (...)
 	{
@@ -57,7 +57,7 @@ void Door::deatach()
 	}
 	try
 	{
-		connections[1]->removeDoor(this);
+		connections[1]->removeWallItem(this);
 	}
 	catch(...)
 	{

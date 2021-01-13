@@ -8,6 +8,7 @@
 class Connection;
 #include "Wall.h"
 #include "Door.h"
+#include "WallItem.h"
 
 using namespace std;
 class Connection:public QGraphicsEllipseItem
@@ -20,15 +21,15 @@ public:
 	Connection(int x, int y);
 	void addWall(Wall* wall);
 	void removeWall(Wall* wall);
-	void addDoor(Door* door);
-	void removeDoor(Door* door);
+	void addWallItem(WallItem* door);
+	void removeWallItem(WallItem* door);
 
-	int getDoorCount();
+	int getWallItemCount();
 	int getWallCount();
 	int getItemCount();
 	
 	list<Wall*> getWalls();
-	list<Door*> getDoors();
+	list<WallItem*> getWallItem();
 	list<QGraphicsItem*> getItems();
 	
 	QPoint getPoint();

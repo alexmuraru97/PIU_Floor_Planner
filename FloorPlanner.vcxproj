@@ -23,6 +23,7 @@
     <ClInclude Include="UtilitiesGrid.h" />
     <ClInclude Include="UtilityPanelWidget.h" />
     <ClInclude Include="Wall.h" />
+    <ClInclude Include="WallItem.h" />
     <ClInclude Include="Window.h" />
     <QtMoc Include="UtilitiesLabel.h" />
     <QtMoc Include="UtilitiesFurniture.h" />

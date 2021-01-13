@@ -80,6 +80,9 @@
     <ClInclude Include="Window.h">
       <Filter>Header Files\Scene Elements</Filter>
     </ClInclude>
+    <ClInclude Include="WallItem.h">
+      <Filter>Header Files\Interfaces</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="UtilitiesFurniture.h">

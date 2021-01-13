@@ -20,9 +20,9 @@ void Connection::removeWall(Wall* wall)
 	{
 		connectedItems.remove(wall);
 	}
-	if(getItemCount()==1&&dynamic_cast<Door*>(connectedItems.front())!=nullptr)
+	if(getItemCount()==1&&dynamic_cast<WallItem*>(connectedItems.front())!=nullptr)
 	{
-		Door* tempDoor = dynamic_cast<Door*>(connectedItems.front());
+		WallItem* tempDoor = dynamic_cast<WallItem*>(connectedItems.front());
 		tempDoor->deatach();
 		delete tempDoor;
 	}
@@ -32,23 +32,23 @@ void Connection::removeWall(Wall* wall)
 	}
 }
 
-void Connection::addDoor(Door* door)
+void Connection::addWallItem(WallItem* door)
 {
 	connectedItems.push_back(door);
 }
 
-void Connection::removeDoor(Door* door)
+void Connection::removeWallItem(WallItem* door)
 {
-	if (getDoorCount() > 0)
+	if (getWallItemCount() > 0)
 	{
 		connectedItems.remove(door);
 	}
 }
 
 
-int Connection::getDoorCount()
+int Connection::getWallItemCount()
 {
-	return getDoors().size();
+	return getWallItem().size();
 }
 
 int Connection::getWallCount()
@@ -75,14 +75,14 @@ list<Wall*> Connection::getWalls()
 	return temp;
 }
 
-list<Door*> Connection::getDoors()
+list<WallItem*> Connection::getWallItem()
 {
-	list<Door*> temp;
+	list<WallItem*> temp;
 	for (QGraphicsItem* item : connectedItems)
 	{
-		if (dynamic_cast<Door*>(item) != nullptr)
+		if (dynamic_cast<WallItem*>(item) != nullptr)
 		{
-			temp.push_back(dynamic_cast<Door*>(item));
+			temp.push_back(dynamic_cast<WallItem*>(item));
 		}
 	}
 	return temp;
@@ -217,9 +217,9 @@ void Connection::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
 		{
 			wall->updatePositions();
 		}
-		for (Door* door : getDoors())
+		for (WallItem* wallItems : getWallItem())
 		{
-			door->updatePositions();
+			wallItems->updatePositions();
 		}
 	}
 }
