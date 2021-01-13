@@ -186,7 +186,8 @@ void Wall::addDoor()
 {
 	Connection* left;
 	Connection* right;
-	double bottom, top,y1,y2;
+	double bottom, top,yleft,yright;
+	//verific care e Conn are x1<x2
 	if(connections[0]->getPoint().x()<=connections[1]->getPoint().x())
 	{
 		left = connections[0];
@@ -197,51 +198,61 @@ void Wall::addDoor()
 		left = connections[1];
 		right = connections[0];
 	}
+
 	if (right->getPoint().y() >= left->getPoint().y())
 	{
 		top = right->getPoint().y();
 		bottom = left->getPoint().y();
-		y2 = (top - bottom) * 2 / 3 + bottom;
-		y1 = (top - bottom) * 1 / 3 + bottom;
+		yright = (top - bottom) * 2 / 3 + bottom;
+		yleft = (top - bottom) * 1 / 3 + bottom;
 	}
 	else
 	{
 		bottom = right->getPoint().y();
 		top = left->getPoint().y();
-		y1 = (top - bottom) * 2 / 3 + bottom;
-		y2 = (top - bottom) * 1 / 3 + bottom;
+		yleft = (top - bottom) * 2 / 3 + bottom;
+		yright = (top - bottom) * 1 / 3 + bottom;
 	}
-	double x1 = (right->getPoint().x() - left->getPoint().x()) / 3 + left->getPoint().x();
-	double x2 = (right->getPoint().x() - left->getPoint().x())* 2 / 3 + left->getPoint().x();
 
+	double xleft = (right->getPoint().x() - left->getPoint().x()) / 3 + left->getPoint().x();
+	double xright = (right->getPoint().x() - left->getPoint().x()) * 2 / 3 + left->getPoint().x();
 
+	//Creez noile conexiuni(aflate la 1/3, respectiv 2/3 din lungimea zidului)
+	Connection* connLeft = new Connection(xleft, yleft);
+	Connection* connRight = new Connection(xright, yright);
 
-	Connection* conn1 = new Connection(x1, y1);
-	Connection* conn2 = new Connection(x2, y2);
+	cout << "Conn1 left x=" << xleft << " y=" << yleft << endl;
+	cout << "Conn2 right x=" << xright << " y=" << yright << endl;
 
-	Wall* tempWall = new Wall(conn2,this->connections[1]);
-	this->connections[1]->removeWall(this);
+	Wall* tempWall = new Wall(connRight, right);
+	right->removeWall(this);
 
-	conn1->addWall(this);
-	this->connections[1] = conn1;
-	
+	connLeft->addWall(this);
+	if(connections[0]==right)
+	{
+		connections[0] = connLeft;
+	}else
+	{
+		connections[1] = connLeft;
+	}
 	scene()->addItem(tempWall);
-	scene()->addItem(conn2);
-	scene()->addItem(conn1);
+	scene()->addItem(connLeft);
+	scene()->addItem(connRight);
 
 	this->updatePositions();
 	tempWall->updatePositions();
 	scene()->update();
-	
-	scene()->addItem(new Door(conn1, conn2));
+	scene()->addItem(new Door(connLeft, connRight));
+
 }
 
 
 Wall::~Wall()
 {
+
+	
 	if (connections[0]->getWalls().size() <= 1)
 	{
-		delete connections[0];
 		connections[0] = nullptr;
 	}
 	else
@@ -252,7 +263,6 @@ Wall::~Wall()
 	
 	if (connections[1]->getWalls().size() <= 1)
 	{
-		delete connections[1];
 		connections[1] = nullptr;
 	}
 	else

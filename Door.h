@@ -11,6 +11,8 @@ class Door;
 class Door:public QGraphicsPixmapItem
 {
 private:
+	Connection* left;
+	Connection* right;
 	QImage img;
 	Connection* connections[2];
 	

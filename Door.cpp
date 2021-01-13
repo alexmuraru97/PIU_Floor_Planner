@@ -6,6 +6,7 @@ Door::Door(Connection* c1, Connection* c2)
 {
 	img = QImage(GlobalStats::GetDoorIcon()).mirrored();
 	this->setPixmap(QPixmap::fromImage(img));
+	
 	connections[0] = c1;
 	connections[1] = c2;
 	c1->addDoor(this);
@@ -16,14 +17,24 @@ Door::Door(Connection* c1, Connection* c2)
 
 double Door::calculateRotation()
 {
-	return atan2(connections[0]->getPoint().y() - connections[1]->getPoint().y(), connections[1]->getPoint().x() - connections[0]->getPoint().x()) * 180 / M_PI;
+	return atan2(left->getPoint().y() - right->getPoint().y(), right->getPoint().x() - left->getPoint().x()) * 180 / M_PI;
 }
 
 void Door::updatePositions()
 {
-	this->setTransformOriginPoint(connections[0]->getPoint().x(), this->y()+connections[0]->getPoint().y());
+	if(connections[0]->getPoint().x()<connections[1]->getPoint().x())
+	{
+		left = connections[0];
+		right = connections[1];
+	}
+	else
+	{
+		left = connections[1];
+		right = connections[0];
+	}
+	this->setTransformOriginPoint(left->getPoint().x(), this->y() + left->getPoint().y());
 	this->setRotation(-calculateRotation());
-	this->setScale(QLineF(connections[1]->getPoint(),connections[0]->getPoint()).length()/(1.0*this->pixmap().width()));
+	this->setScale(QLineF(left->getPoint(), right->getPoint()).length() / (1.0 * this->pixmap().width()));
 	this->update();
 }
 
