@@ -1,5 +1,6 @@
 ﻿#include "Wall.h"
 
+
 Wall::Wall(int x1, int y1) :QGraphicsLineItem((qreal)x1, (qreal)y1, 0, 0)
 {
 	connections[0] = new Connection(x1,y1);
@@ -98,7 +99,6 @@ void Wall::mouseDoubleClickEvent(QGraphicsSceneMouseEvent* event)
 				if (aux != nullptr)
 				{
 					aux->hideConnections();
-					aux = nullptr;
 				}
 			}
 		}
@@ -243,6 +243,71 @@ void Wall::addDoor()
 	tempWall->updatePositions();
 	scene()->update();
 	scene()->addItem(new Door(connLeft, connRight));
+
+}
+
+void Wall::addWindow()
+{
+	Connection* left;
+	Connection* right;
+	double bottom, top, yleft, yright;
+	//verific care e Conn are x1<x2
+	if (connections[0]->getPoint().x() <= connections[1]->getPoint().x())
+	{
+		left = connections[0];
+		right = connections[1];
+	}
+	else
+	{
+		left = connections[1];
+		right = connections[0];
+	}
+
+	if (right->getPoint().y() >= left->getPoint().y())
+	{
+		top = right->getPoint().y();
+		bottom = left->getPoint().y();
+		yright = (top - bottom) * 2 / 3 + bottom;
+		yleft = (top - bottom) * 1 / 3 + bottom;
+	}
+	else
+	{
+		bottom = right->getPoint().y();
+		top = left->getPoint().y();
+		yleft = (top - bottom) * 2 / 3 + bottom;
+		yright = (top - bottom) * 1 / 3 + bottom;
+	}
+
+	double xleft = (right->getPoint().x() - left->getPoint().x()) / 3 + left->getPoint().x();
+	double xright = (right->getPoint().x() - left->getPoint().x()) * 2 / 3 + left->getPoint().x();
+
+	//Creez noile conexiuni(aflate la 1/3, respectiv 2/3 din lungimea zidului)
+	Connection* connLeft = new Connection(xleft, yleft);
+	Connection* connRight = new Connection(xright, yright);
+
+	cout << "Conn1 left x=" << xleft << " y=" << yleft << endl;
+	cout << "Conn2 right x=" << xright << " y=" << yright << endl;
+
+	Wall* tempWall = new Wall(connRight, right);
+	right->removeWall(this);
+
+	connLeft->addWall(this);
+	if (connections[0] == right)
+	{
+		connections[0] = connLeft;
+	}
+	else
+	{
+		connections[1] = connLeft;
+	}
+	scene()->addItem(tempWall);
+	scene()->addItem(connLeft);
+	scene()->addItem(connRight);
+
+	this->updatePositions();
+	tempWall->updatePositions();
+	scene()->update();
+	scene()->addItem(new Window(connLeft, connRight));
 
 }
 

@@ -51,7 +51,7 @@ void DrawPanelWidget::keyPressEvent(QKeyEvent* event)
 			}
 		}
 		QGraphicsItem* it = scene->itemAt(mousePoint, QTransform());
-		if(dynamic_cast<Wall*>(it)!=nullptr|| dynamic_cast<Door*>(it) != nullptr)
+		if(dynamic_cast<Wall*>(it)!=nullptr|| dynamic_cast<Door*>(it) != nullptr|| dynamic_cast<Window*>(it) != nullptr)
 		{
 			scene->removeItem(it);
 			delete it;
@@ -63,7 +63,15 @@ void DrawPanelWidget::keyPressEvent(QKeyEvent* event)
 		if (dynamic_cast<Wall*>(it) != nullptr)
 		{
 			dynamic_cast<Wall*>(it)->addDoor();
-			//TODO ADD DOOR ON THIS WALL
+		}
+	}
+	else if (event->key() == Qt::Key_F)
+	{
+		QGraphicsItem* it = scene->itemAt(mousePoint, QTransform());
+		if (dynamic_cast<Wall*>(it) != nullptr)
+		{
+			dynamic_cast<Wall*>(it)->addWindow();
+
 		}
 	}
 	

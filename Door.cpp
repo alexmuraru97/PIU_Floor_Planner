@@ -17,26 +17,18 @@ Door::Door(Connection* c1, Connection* c2)
 
 double Door::calculateRotation()
 {
-	return atan2(left->getPoint().y() - right->getPoint().y(), right->getPoint().x() - left->getPoint().x()) * 180 / M_PI;
+		return QLineF(connections[0]->getPoint(), connections[1]->getPoint()).angle();
 }
 
 void Door::updatePositions()
 {
-	if(connections[0]->getPoint().x()<connections[1]->getPoint().x())
-	{
-		left = connections[0];
-		right = connections[1];
-	}
-	else
-	{
-		left = connections[1];
-		right = connections[0];
-	}
-	this->setTransformOriginPoint(left->getPoint().x(), this->y() + left->getPoint().y());
-	this->setRotation(-calculateRotation());
-	this->setScale(QLineF(left->getPoint(), right->getPoint()).length() / (1.0 * this->pixmap().width()));
-	left->show();
-	right->show();
+	this->setX(connections[0]->getPoint().x());
+	this->setY(connections[0]->getPoint().y());
+	this->setTransformOriginPoint(0, -GlobalStats::GetConnRadius() / 2.0);
+	this->setRotation(-abs(calculateRotation()));
+	this->setScale(QLineF(connections[0]->getPoint(), connections[1]->getPoint()).length() / (1.0 * this->pixmap().width()));
+	connections[0]->show();
+	connections[1]->show();
 	this->update();
 }
 

@@ -7,6 +7,7 @@
 //Circular dependency
 class Wall;
 #include "Connection.h"
+#include "Window.h"
 
 class Wall:public QGraphicsLineItem
 {
@@ -25,5 +26,6 @@ public:
 	bool containsConnection(Connection* conn);
 	Connection** getConnections();
 	void addDoor();
+	void addWindow();
 	~Wall();
 };

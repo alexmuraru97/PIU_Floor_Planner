@@ -12,8 +12,6 @@ class Door;
 class Door:public WallItem
 {
 private:
-	Connection* left;
-	Connection* right;
 	QImage img;
 
 public:
