@@ -3,6 +3,7 @@
 
 Wall::Wall(int x1, int y1) :QGraphicsLineItem((qreal)x1, (qreal)y1, 0, 0)
 {
+	this->setZValue(std::numeric_limits<qreal>::max());
 	connections[0] = new Connection(x1,y1);
 	connections[0]->addWall(this);
 	connections[1] = new Connection(0,0);
@@ -21,6 +22,7 @@ Wall::Wall(int x1, int y1) :QGraphicsLineItem((qreal)x1, (qreal)y1, 0, 0)
 
 Wall::Wall(int x1, int y1, int x2, int y2) : QGraphicsLineItem((qreal)x1, (qreal)y1, (qreal)x2, (qreal)y2)
 {
+	this->setZValue(std::numeric_limits<qreal>::max());
 	connections[0] = new Connection(x1,y1);
 	connections[0]->addWall(this);
 	connections[1] = new Connection(x2,y2);
@@ -40,6 +42,7 @@ Wall::Wall(int x1, int y1, int x2, int y2) : QGraphicsLineItem((qreal)x1, (qreal
 
 Wall::Wall(Connection* c1, Connection* c2)
 {
+	this->setZValue(std::numeric_limits<qreal>::max());
 	connections[0] = c1;
 	connections[0]->addWall(this);
 	connections[1] = c2;
@@ -221,8 +224,6 @@ void Wall::addDoor()
 	Connection* connLeft = new Connection(xleft, yleft);
 	Connection* connRight = new Connection(xright, yright);
 
-	cout << "Conn1 left x=" << xleft << " y=" << yleft << endl;
-	cout << "Conn2 right x=" << xright << " y=" << yright << endl;
 
 	Wall* tempWall = new Wall(connRight, right);
 	right->removeWall(this);
@@ -285,8 +286,6 @@ void Wall::addWindow()
 	Connection* connLeft = new Connection(xleft, yleft);
 	Connection* connRight = new Connection(xright, yright);
 
-	cout << "Conn1 left x=" << xleft << " y=" << yleft << endl;
-	cout << "Conn2 right x=" << xright << " y=" << yright << endl;
 
 	Wall* tempWall = new Wall(connRight, right);
 	right->removeWall(this);

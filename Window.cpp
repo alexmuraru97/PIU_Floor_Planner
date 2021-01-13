@@ -26,7 +26,6 @@ void Window::updatePositions()
 	this->setTransformOriginPoint(0,-GlobalStats::GetConnRadius()/2.0 );
 	this->setRotation(-abs(calculateRotation()));
 	this->setScale(QLineF(connections[0]->getPoint(), connections[1]->getPoint()).length() / (1.0 * this->pixmap().width()));
-	cout<< calculateRotation() <<endl;
 	
 	connections[0]->show();
 	connections[1]->show();

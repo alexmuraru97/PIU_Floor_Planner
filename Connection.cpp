@@ -7,7 +7,7 @@ Connection::Connection(int x, int y):QGraphicsEllipseItem()
 	this->setRect(QRectF(gridX- GlobalStats::GetConnRadius()/2.0, gridY- GlobalStats::GetConnRadius()/2.0, GlobalStats::GetConnRadius(), GlobalStats::GetConnRadius()));
 	point.setX(gridX);
 	point.setY(gridY);
-	this->setZValue(std::numeric_limits<qreal>::max());
+	this->setZValue(std::numeric_limits<qreal>::max()-1);
 }
 
 void Connection::addWall(Wall* wall)
