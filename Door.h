@@ -18,6 +18,8 @@ public:
 	Door(Connection* c1, Connection*c2);
 	double calculateRotation();
 	void updatePositions();
+	void flipDoorVertically();
+	void flipDoorHorizontally();
 	void mouseDoubleClickEvent(QGraphicsSceneMouseEvent* event) override;
 };
 
