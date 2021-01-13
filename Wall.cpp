@@ -249,26 +249,6 @@ void Wall::addDoor()
 
 Wall::~Wall()
 {
-
-	
-	if (connections[0]->getWalls().size() <= 1)
-	{
-		connections[0] = nullptr;
-	}
-	else
-	{
-		connections[0]->removeWall(this);
-
-	}
-	
-	if (connections[1]->getWalls().size() <= 1)
-	{
-		connections[1] = nullptr;
-	}
-	else
-	{
-		connections[1]->removeWall(this);
-	}
-
-
+	connections[0]->removeWall(this);
+	connections[1]->removeWall(this);
 }

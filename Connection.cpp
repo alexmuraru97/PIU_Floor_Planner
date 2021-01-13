@@ -20,8 +20,13 @@ void Connection::removeWall(Wall* wall)
 	{
 		connectedItems.remove(wall);
 	}
-	
-	if(getItems().size()==0)
+	if(getItemCount()==1&&dynamic_cast<Door*>(connectedItems.front())!=nullptr)
+	{
+		Door* tempDoor = dynamic_cast<Door*>(connectedItems.front());
+		tempDoor->deatach();
+		delete tempDoor;
+	}
+	if(connectedItems.size()==0)
 	{
 		delete this;
 	}
@@ -37,11 +42,6 @@ void Connection::removeDoor(Door* door)
 	if (getDoorCount() > 0)
 	{
 		connectedItems.remove(door);
-	}
-
-	if (getItemCount() == 0)
-	{
-		delete this;
 	}
 }
 

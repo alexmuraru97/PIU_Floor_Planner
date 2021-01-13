@@ -51,12 +51,10 @@ void DrawPanelWidget::keyPressEvent(QKeyEvent* event)
 			}
 		}
 		QGraphicsItem* it = scene->itemAt(mousePoint, QTransform());
-		if(dynamic_cast<Wall*>(it)!=nullptr)
+		if(dynamic_cast<Wall*>(it)!=nullptr|| dynamic_cast<Door*>(it) != nullptr)
 		{
-			Wall* temp = dynamic_cast<Wall*>(it);
-			scene->removeItem(temp);
-			delete temp;
-			temp = nullptr;
+			scene->removeItem(it);
+			delete it;
 		}
 	}
 	else if (event->key() == Qt::Key_D)

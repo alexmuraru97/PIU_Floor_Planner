@@ -35,7 +35,35 @@ void Door::updatePositions()
 	this->setTransformOriginPoint(left->getPoint().x(), this->y() + left->getPoint().y());
 	this->setRotation(-calculateRotation());
 	this->setScale(QLineF(left->getPoint(), right->getPoint()).length() / (1.0 * this->pixmap().width()));
+	left->show();
+	right->show();
 	this->update();
+}
+
+Connection** Door::getConnections()
+{
+	return connections;
+}
+
+void Door::deatach()
+{
+	try
+	{
+		connections[0]->removeDoor(this);
+	}
+	catch (...)
+	{
+		cout << "Error deataching door";
+	}
+	try
+	{
+		connections[1]->removeDoor(this);
+	}
+	catch(...)
+	{
+		cout << "Error deataching door";
+	}
+
 }
 
 void Door::flipDoorVertically()
@@ -59,4 +87,9 @@ void Door::mouseDoubleClickEvent(QGraphicsSceneMouseEvent* event)
 		GlobalStats::ToggleOnPropertyMenu();
 	}
 	
+}
+
+Door::~Door()
+{
+	deatach();
 }
