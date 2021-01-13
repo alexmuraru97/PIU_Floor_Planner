@@ -1,5 +1,7 @@
 #include "DrawPanelWidget.h"
 
+#include "Label.h"
+
 
 DrawPanelWidget::DrawPanelWidget()
 {
@@ -74,7 +76,10 @@ void DrawPanelWidget::keyPressEvent(QKeyEvent* event)
 
 		}
 	}
-	
+	else if (event->key() == Qt::Key_L)
+	{
+		scene->addItem(new Label("Agugu gaga", mousePoint.x(), mousePoint.y()));
+	}
 }
 
 

@@ -83,6 +83,9 @@
     <ClInclude Include="WallItem.h">
       <Filter>Header Files\Interfaces</Filter>
     </ClInclude>
+    <ClInclude Include="Label.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="UtilitiesFurniture.h">
@@ -139,6 +142,9 @@
       <Filter>Sources\Scene Elements</Filter>
     </ClCompile>
     <ClCompile Include="Door.cpp">
+      <Filter>Sources\Scene Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Label.cpp">
       <Filter>Sources\Scene Elements</Filter>
     </ClCompile>
   </ItemGroup>
