@@ -211,7 +211,6 @@ void Wall::addDoor()
 		y1 = (top - bottom) * 2 / 3 + bottom;
 		y2 = (top - bottom) * 1 / 3 + bottom;
 	}
-	double slope = (right->getPoint().y() - left->getPoint().y())*1.0 / (1.0*(right->getPoint().x() - left->getPoint().x()));
 	double x1 = (right->getPoint().x() - left->getPoint().x()) / 3 + left->getPoint().x();
 	double x2 = (right->getPoint().x() - left->getPoint().x())* 2 / 3 + left->getPoint().x();
 
@@ -234,7 +233,6 @@ void Wall::addDoor()
 	tempWall->updatePositions();
 	scene()->update();
 	
-	//TODO ADD DOOR RELATIVE TO CONN1 CONN2
 	scene()->addItem(new Door(conn1, conn2));
 }
 
