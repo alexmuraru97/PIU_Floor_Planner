@@ -7,7 +7,7 @@ Connection::Connection(int x, int y):QGraphicsEllipseItem()
 	this->setRect(QRectF(gridX- GlobalStats::GetConnRadius()/2.0, gridY- GlobalStats::GetConnRadius()/2.0, GlobalStats::GetConnRadius(), GlobalStats::GetConnRadius()));
 	point.setX(gridX);
 	point.setY(gridY);
-	this->setZValue(std::numeric_limits<qreal>::max()-1);
+	this->setZValue(std::numeric_limits<qreal>::max());
 }
 
 void Connection::addWall(Wall* wall)
@@ -105,13 +105,22 @@ QPoint Connection::getPoint()
 
 void Connection::mousePressEvent(QGraphicsSceneMouseEvent* event)
 {
+	if(event->button()==Qt::MidButton)
+	{
+		event->ignore();
+		return;
+	}
 	dragOver = true;
 }
 
 void Connection::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
 {
 	dragOver = false;
-
+	if (event->button() == Qt::MidButton)
+	{
+		event->ignore();
+		return;
+	}
 	QList<QGraphicsItem*>itemList=scene()->collidingItems(this, Qt::IntersectsItemShape);
 
 	//Daca fac merge pe alt Connection
@@ -250,6 +259,11 @@ void Connection::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
 
 void Connection::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
 {
+	if (event->button() == Qt::MidButton)
+	{
+		event->ignore();
+		return;
+	}
 	GlobalStats::mousePosition.setX(event->pos().x());
 	GlobalStats::mousePosition.setY(event->pos().y());
 	if(dragOver)

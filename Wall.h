@@ -4,6 +4,7 @@
 #include <QPainter>
 #include <QGraphicsScene>
 #include <math.h>
+#include <QGraphicsSceneContextMenuEvent>
 //Circular dependency
 class Wall;
 #include "Connection.h"

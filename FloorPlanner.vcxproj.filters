@@ -39,11 +39,20 @@
     <Filter Include="Header Files\Interfaces">
       <UniqueIdentifier>{60b1614b-c250-4d5c-bc6d-22e32b208333}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\PropertyPanels">
+      <UniqueIdentifier>{5d27528e-cdb8-48af-8dca-c34f116edf48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Property Panels">
+      <UniqueIdentifier>{ca3ddaa7-94d4-4756-bc0b-61c08bc68324}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Custom Holders">
+      <UniqueIdentifier>{60d57c20-99b3-49a4-8236-358d5aeeaf3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Custom Holders">
+      <UniqueIdentifier>{65bbd551-4bc6-48c1-9423-c60408d066d4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CustomGraphicsView.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="DrawPanelWidget.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -86,6 +95,12 @@
     <ClInclude Include="Label.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CustomGraphicsView.h">
+      <Filter>Header Files\Custom Holders</Filter>
+    </ClInclude>
+    <ClInclude Include="CustomScene.h">
+      <Filter>Header Files\Custom Holders</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="UtilitiesFurniture.h">
@@ -100,9 +115,6 @@
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="GlobalStats.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="CustomGraphicsView.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="Connection.cpp">
@@ -146,6 +158,12 @@
     </ClCompile>
     <ClCompile Include="Label.cpp">
       <Filter>Sources\Scene Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="CustomScene.cpp">
+      <Filter>Sources\Custom Holders</Filter>
+    </ClCompile>
+    <ClCompile Include="CustomGraphicsView.cpp">
+      <Filter>Sources\Custom Holders</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

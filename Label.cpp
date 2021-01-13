@@ -1,17 +1,22 @@
 #include "Label.h"
 
+#include <qtextoption.h>
+#include <qtextdocument.h>
 
-
-Label::Label(QString text, int x, int y)
+Label::Label(QString text, int x, int y, int textSize, int textWidth)
 {
-	setFlags(QGraphicsItem::ItemIsMovable  |	QGraphicsItem::ItemIsSelectable);
+	setFlags(QGraphicsItem::ItemIsMovable |QGraphicsItem::ItemIsSelectable);
 	this->setPos(x, y);
 	
+	setSize(textSize);
+	setBold(true);
+	setColor(QColor(0, 0, 0));
+	setAlignment(Qt::AlignCenter);
 	
-	this->setSize(20);
-	this->setBold(true);
-	this->setColor(QColor(0, 0, 0));
+	//implicit functions
 	this->setPlainText(text);
+	this->setTextWidth(textWidth);
+
 }
 
 void Label::setSize(int size)
@@ -37,9 +42,21 @@ void Label::updateFontData()
 	this->setFont(font);
 }
 
+void Label::setAlignment(Qt::Alignment align)
+{
+	QTextOption option = this->document()->defaultTextOption();
+	option.setAlignment(align);
+	this->document()->setDefaultTextOption(option);
+}
+
 
 void Label::mouseDoubleClickEvent(QGraphicsSceneMouseEvent* event)
 {
+	if (event->button() == Qt::MidButton)
+	{
+		event->ignore();
+		return;
+	}
 	if (GlobalStats::GetTogglePropertyStatus())
 	{
 		GlobalStats::ToggleOffPropertyMenu();

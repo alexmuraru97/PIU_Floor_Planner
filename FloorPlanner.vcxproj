@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClInclude Include="Connection.h" />
     <ClInclude Include="CustomGraphicsView.h" />
+    <ClInclude Include="CustomScene.h" />
     <ClInclude Include="Door.h" />
     <ClInclude Include="DrawPanelWidget.h" />
     <ClInclude Include="GlobalStats.h" />
@@ -32,6 +33,7 @@
   <ItemGroup>
     <ClCompile Include="Connection.cpp" />
     <ClCompile Include="CustomGraphicsView.cpp" />
+    <ClCompile Include="CustomScene.cpp" />
     <ClCompile Include="Door.cpp" />
     <ClCompile Include="DrawPanelWidget.cpp" />
     <ClCompile Include="GlobalStats.cpp" />

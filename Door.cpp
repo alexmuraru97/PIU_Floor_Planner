@@ -71,6 +71,11 @@ void Door::flipDoorHorizontally()
 
 void Door::mouseDoubleClickEvent(QGraphicsSceneMouseEvent* event)
 {
+	if (event->button() == Qt::MidButton)
+	{
+		event->ignore();
+		return;
+	}
 	if(GlobalStats::GetTogglePropertyStatus())
 	{
 		GlobalStats::ToggleOffPropertyMenu();

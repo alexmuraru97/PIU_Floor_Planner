@@ -12,6 +12,7 @@ UtilityPanelWidget* GlobalStats::leftMenuPanel=nullptr;
 QString GlobalStats::doorIcon="";
 QString GlobalStats::windowIcon="";
 bool GlobalStats::togglePropertyStatus = false;
+GlobalStats::SceneOperationType GlobalStats::currentOperation = GlobalStats::SceneOperationType::NONE;
 
 int GlobalStats::GetWallWidth()
 {

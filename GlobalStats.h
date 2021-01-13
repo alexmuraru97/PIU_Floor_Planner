@@ -5,6 +5,7 @@
 
 class GlobalStats
 {
+
 	static int wallWidth;
 	static int gridStep;
 	static int connRadius;
@@ -18,6 +19,8 @@ class GlobalStats
 	static QString doorIcon;
 	static QString windowIcon;
 public:
+	enum class SceneOperationType { NONE, INSERT_WALL, INSERT_DOOR, INSERT_WINDOW, INSERT_LABEL,DELETE };
+	static SceneOperationType currentOperation;
 	static QPoint mousePosition;
 	static int GetWallWidth();
 	static void SetWallWidth(int width);

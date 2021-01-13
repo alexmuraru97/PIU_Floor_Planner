@@ -35,6 +35,11 @@ void Window::updatePositions()
 
 void Window::mouseDoubleClickEvent(QGraphicsSceneMouseEvent* event)
 {
+	if(event->button()==Qt::MidButton)
+	{
+		event->ignore();
+		return;
+	}
 	if (GlobalStats::GetTogglePropertyStatus())
 	{
 		GlobalStats::ToggleOffPropertyMenu();

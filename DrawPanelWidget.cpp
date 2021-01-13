@@ -1,5 +1,7 @@
 #include "DrawPanelWidget.h"
 
+
+#include "CustomScene.h"
 #include "Label.h"
 
 
@@ -9,7 +11,7 @@ DrawPanelWidget::DrawPanelWidget()
 	setMouseTracking(true);
 	
 	//Init scene
-	scene = new QGraphicsScene();
+	scene = new CustomScene();
 	GlobalStats::SetGraphicsScene(scene);
 	view = new CustomGraphicsView(this);
 	view->setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
@@ -36,50 +38,109 @@ void DrawPanelWidget::resizeEvent(QResizeEvent* event)
 	view->setFixedHeight(this->size().height());
 }
 
+//Map keys on operations
 void DrawPanelWidget::keyPressEvent(QKeyEvent* event)
 {
 	QPointF mousePoint = view->mapToScene(view->mapFromGlobal(QCursor::pos()));
 	if(event->key()==Qt::Key_W)
 	{
-		scene->addItem(new Wall(mousePoint.x()-25, mousePoint.y(), mousePoint.x()+25, mousePoint.y()));
+		GlobalStats::currentOperation = GlobalStats::SceneOperationType::INSERT_WALL;
+		cout << "Current Operation: Wall insert" << endl;
 	}
 	else if(event->key()==Qt::Key_Delete)
 	{
-		for(QGraphicsItem* item:scene->items())
-		{
-			if (dynamic_cast<Wall*>(item) != nullptr)
-			{
-				dynamic_cast<Wall*>(item)->hideConnections();
-			}
-		}
-		QGraphicsItem* it = scene->itemAt(mousePoint, QTransform());
-		if(dynamic_cast<Wall*>(it)!=nullptr|| dynamic_cast<Door*>(it) != nullptr|| dynamic_cast<Window*>(it) != nullptr)
-		{
-			scene->removeItem(it);
-			delete it;
-		}
+		GlobalStats::currentOperation = GlobalStats::SceneOperationType::DELETE;
+		cout << "Current Operation: Delete" << endl;
 	}
 	else if (event->key() == Qt::Key_D)
 	{
-		QGraphicsItem* it = scene->itemAt(mousePoint, QTransform());
-		if (dynamic_cast<Wall*>(it) != nullptr)
-		{
-			dynamic_cast<Wall*>(it)->addDoor();
-		}
+		GlobalStats::currentOperation = GlobalStats::SceneOperationType::INSERT_DOOR;
+		cout << "Current Operation: Insert Door" << endl;
 	}
 	else if (event->key() == Qt::Key_F)
 	{
-		QGraphicsItem* it = scene->itemAt(mousePoint, QTransform());
-		if (dynamic_cast<Wall*>(it) != nullptr)
-		{
-			dynamic_cast<Wall*>(it)->addWindow();
-
-		}
+		GlobalStats::currentOperation = GlobalStats::SceneOperationType::INSERT_WINDOW;
+		cout << "Current Operation: Insert Window" << endl;
 	}
 	else if (event->key() == Qt::Key_L)
 	{
-		scene->addItem(new Label("Agugu gaga", mousePoint.x(), mousePoint.y()));
+		GlobalStats::currentOperation = GlobalStats::SceneOperationType::INSERT_LABEL;
+		cout << "Current Operation: Insert Label" << endl;
 	}
 }
+
+//Map operations on Middle Scroll button
+void DrawPanelWidget::mousePressEvent(QMouseEvent* event)
+{
+	if(event->button()!=Qt::MidButton)
+	{
+		event->ignore();
+		return;
+	}
+	
+	QPointF mousePoint = view->mapToScene(event->pos());
+	switch(GlobalStats::currentOperation)
+	{
+		case GlobalStats::SceneOperationType::NONE:
+			cout << "No operation selected" << endl;
+			break;
+
+		case GlobalStats::SceneOperationType::INSERT_WALL:
+			{
+				GlobalStats::currentOperation = GlobalStats::SceneOperationType::NONE;
+				scene->addItem(new Wall(mousePoint.x() - 25, mousePoint.y(), mousePoint.x() + 25, mousePoint.y()));
+			}
+			break;
+		
+		case GlobalStats::SceneOperationType::DELETE:
+			{
+				GlobalStats::currentOperation = GlobalStats::SceneOperationType::NONE;
+				for (QGraphicsItem* item : scene->items())
+				{
+					if (dynamic_cast<Wall*>(item) != nullptr)
+					{
+						dynamic_cast<Wall*>(item)->hideConnections();
+					}
+				}
+				QGraphicsItem* it = scene->itemAt(mousePoint, QTransform());
+				if (dynamic_cast<Wall*>(it) != nullptr || dynamic_cast<Door*>(it) != nullptr || dynamic_cast<Window*>(it) != nullptr || dynamic_cast<Label*>(it) != nullptr)
+				{
+					scene->removeItem(it);
+					delete it;
+				}
+			}
+			break;
+
+		case GlobalStats::SceneOperationType::INSERT_DOOR:
+			{
+				GlobalStats::currentOperation = GlobalStats::SceneOperationType::NONE;
+				QGraphicsItem* it = scene->itemAt(mousePoint, QTransform());
+				if (dynamic_cast<Wall*>(it) != nullptr)
+				{
+					dynamic_cast<Wall*>(it)->addDoor();
+				}
+			}
+			break;
+
+		case GlobalStats::SceneOperationType::INSERT_WINDOW:
+			{
+				GlobalStats::currentOperation = GlobalStats::SceneOperationType::NONE;
+				QGraphicsItem* it = scene->itemAt(mousePoint, QTransform());
+				if (dynamic_cast<Wall*>(it) != nullptr)
+				{
+					dynamic_cast<Wall*>(it)->addWindow();
+				}
+			}
+			break;
+
+		case GlobalStats::SceneOperationType::INSERT_LABEL:
+			{
+				GlobalStats::currentOperation = GlobalStats::SceneOperationType::NONE;
+				scene->addItem(new Label("Test message long", mousePoint.x(), mousePoint.y()));
+			}
+			break;
+	}
+}
+
 
 

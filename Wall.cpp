@@ -3,7 +3,7 @@
 
 Wall::Wall(int x1, int y1) :QGraphicsLineItem((qreal)x1, (qreal)y1, 0, 0)
 {
-	this->setZValue(std::numeric_limits<qreal>::max());
+	this->setZValue(std::numeric_limits<qreal>::max()-1);
 	connections[0] = new Connection(x1,y1);
 	connections[0]->addWall(this);
 	connections[1] = new Connection(0,0);
@@ -62,6 +62,11 @@ Wall::Wall(Connection* c1, Connection* c2)
 //Show Grabbing points on double click
 void Wall::mouseDoubleClickEvent(QGraphicsSceneMouseEvent* event)
 {
+	if(event->button()==Qt::MidButton)
+	{
+		event->ignore();
+		return;
+	}
 	Wall* aux = nullptr;
 	if (GlobalStats::GetIsShowingConnections())
 	{
