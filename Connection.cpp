@@ -127,6 +127,8 @@ void Connection::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
 	if(toBeMerged!=nullptr)
 	{
 		//verific daca nodul e valid (daca nu face parte din acelasi perete)
+		//tobeMerged, cel pe care ajung
+		//this, obiectul pe care il mut
 		list<Wall*> neighbourWalls=this->getWalls();
 		bool isValidWall = true;
 		if(neighbourWalls.size()>0)
@@ -146,8 +148,27 @@ void Connection::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
 			if(isValidWall)
 			{
 				list<Wall*> tbrWalls = toBeMerged->getWalls();
+				list<WallItem*> tbrWallItems = toBeMerged->getWallItem();
+				
 				list<Wall*> thisWalls = this->getWalls();
+				list<WallItem*> thisWallsItems = this->getWallItem();
+				
 				list<Wall*> commonWalls;
+				list<WallItem*> commonWallItems;
+
+				//For items(door/windows)
+				for (WallItem* thisWallitem : thisWallsItems)
+				{
+					for (WallItem* tbrWallItem : tbrWallItems)
+					{
+						if (tbrWallItem->getConnections()[0] == thisWallitem->getConnections()[0] || tbrWallItem->getConnections()[0] == thisWallitem->getConnections()[1] || tbrWallItem->getConnections()[1] == thisWallitem->getConnections()[0] || tbrWallItem->getConnections()[1] == thisWallitem->getConnections()[1])
+						{
+							commonWallItems.push_back(tbrWallItem);
+						}
+					}
+				}
+
+				//For walls
 				for(Wall* thisWall:thisWalls)
 				{
 					for(Wall* tbrWall:tbrWalls)
@@ -158,8 +179,8 @@ void Connection::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
 						}
 					}
 				}
-				//if comune
-				if(commonWalls.size()==0)
+
+				if(commonWalls.size()==0||commonWallItems.size()!=0)
 				{
 					for (Wall* wall : tbrWalls)
 					{
@@ -173,8 +194,22 @@ void Connection::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
 						{
 							conn[1] = this;
 						}
-
 						this->addWall(wall);
+					}
+
+					for (WallItem* wallItem : tbrWallItems)
+					{
+						//verifica daca conn[0] sau conn[1]sunt comune
+						Connection** conn = wallItem->getConnections();
+						if (conn[0] == toBeMerged)
+						{
+							conn[0] = this;
+						}
+						if (conn[1] == toBeMerged)
+						{
+							conn[1] = this;
+						}
+						this->addWallItem(wallItem);
 					}
 					delete toBeMerged;
 					toBeMerged = nullptr;
@@ -184,6 +219,14 @@ void Connection::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
 		for(Wall* wall:getWalls())
 		{
 			wall->updatePositions();
+		}
+		for (QGraphicsItem* items : getItems())
+		{
+			if(dynamic_cast<WallItem*>(items) !=nullptr)
+			{
+				dynamic_cast<WallItem*>(items)->updatePositions();
+			}
+			
 		}
 		return;
 	}
