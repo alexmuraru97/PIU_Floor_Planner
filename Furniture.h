@@ -10,6 +10,6 @@ public:
 	
 	Furniture(int x, int y,QString path);
 	void mouseDoubleClickEvent(QGraphicsSceneMouseEvent* event) override;
-	~Furniture(){};
+	~Furniture();
 };
 

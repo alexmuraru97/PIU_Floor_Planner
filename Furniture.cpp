@@ -4,6 +4,7 @@ Furniture::Furniture(int x, int y, QString path):QGraphicsPixmapItem()
 {
 	img = QImage(path);
 	this->setPixmap(QPixmap::fromImage(img));
+	this->setScale(0.02);
 	setFlags(QGraphicsItem::ItemIsMovable | QGraphicsItem::ItemIsSelectable);
 	this->setX(x);
 	this->setY(y);

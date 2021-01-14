@@ -120,7 +120,7 @@ void DrawPanelWidget::mousePressEvent(QMouseEvent* event)
 					}
 				}
 				QGraphicsItem* it = scene->itemAt(mousePoint, QTransform());
-				if (dynamic_cast<Wall*>(it) != nullptr || dynamic_cast<Door*>(it) != nullptr || dynamic_cast<Window*>(it) != nullptr || dynamic_cast<Label*>(it) != nullptr)
+				if (dynamic_cast<Wall*>(it) != nullptr || dynamic_cast<Door*>(it) != nullptr || dynamic_cast<Window*>(it) != nullptr || dynamic_cast<Label*>(it) != nullptr|| dynamic_cast<Furniture*>(it) != nullptr)
 				{
 					scene->removeItem(it);
 					delete it;
@@ -217,9 +217,12 @@ void DrawPanelWidget::mousePressEvent(QMouseEvent* event)
 
 		case GlobalStats::SceneOperationType::INSERT_FURNITURE:
 		{
-			GlobalStats::SetOperationType(GlobalStats::SceneOperationType::NONE);
 			QGraphicsItem* it = scene->itemAt(mousePoint, QTransform());
-			scene->addItem(new Furniture(mousePoint.x(),mousePoint.y(),GlobalStats::GetFurnitureIcon()));
+			if(GlobalStats::GetFurnitureIcon()!="")
+			{
+				scene->addItem(new Furniture(mousePoint.x(), mousePoint.y(), GlobalStats::GetFurnitureIcon()));
+			}
+			GlobalStats::SetOperationType(GlobalStats::SceneOperationType::NONE);
 		}
 		break;
 	}

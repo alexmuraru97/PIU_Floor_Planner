@@ -185,6 +185,10 @@ GlobalStats::SceneOperationType GlobalStats::GetOperationType()
 void GlobalStats::SetOperationType(SceneOperationType op)
 {
 	GlobalStats::currentOperation = op;
+	if(op!=SceneOperationType::INSERT_FURNITURE)
+	{
+		GlobalStats::furnitureIcon = "";
+	}
 }
 
 
