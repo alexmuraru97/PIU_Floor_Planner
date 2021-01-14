@@ -46,7 +46,6 @@ void DrawPanelWidget::keyPressEvent(QKeyEvent* event)
 	{
 		GlobalStats::currentOperation = GlobalStats::SceneOperationType::INSERT_WALL;
 		cout << "Current Operation: Wall insert" << endl;
-		GlobalStats::ExportProject();
 	}
 	else if(event->key()==Qt::Key_Delete)
 	{
@@ -80,6 +79,11 @@ void DrawPanelWidget::keyPressEvent(QKeyEvent* event)
 			cout << "Current Operation: Export Data" << endl;
 			GlobalStats::ExportProject();
 		}
+	}
+	else if (event->key() == Qt::Key_C)
+	{
+		cout << "Current Operation: Clear Scene" << endl;
+		GlobalStats::ClearScene();
 	}
 }
 

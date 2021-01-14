@@ -1,6 +1,5 @@
 #include "GlobalStats.h"
 
-#include <iostream>
 int GlobalStats::wallWidth = 2;
 int GlobalStats::gridStep = 2;
 int GlobalStats::connRadius = 4;
@@ -147,6 +146,15 @@ void GlobalStats::ExportProject()
 	else
 	{
 		std::cout << "Cannot export project, view not found";
+	}
+}
+
+void GlobalStats::ClearScene()
+{
+	while(scene->items().size()>0)
+	{
+		QGraphicsItem* item = scene->items().front();
+		scene->removeItem(item);
 	}
 }
 
