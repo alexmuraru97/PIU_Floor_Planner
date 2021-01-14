@@ -1,4 +1,6 @@
 #include "GlobalStats.h"
+
+#include <iostream>
 int GlobalStats::wallWidth = 2;
 int GlobalStats::gridStep = 2;
 int GlobalStats::connRadius = 4;
@@ -129,6 +131,23 @@ QString GlobalStats::GetWindowIcon()
 bool GlobalStats::GetTogglePropertyStatus()
 {
 	return GlobalStats::togglePropertyStatus;
+}
+
+void GlobalStats::ExportProject()
+{
+	if (scene->views().size() > 0)
+	{
+		QString fileName = QFileDialog::getSaveFileName(scene->views().front(), "Save image", QDir::currentPath()+QString("Project.png"), "PNG (*.png);;JPEG (*.JPEG)");
+		if (!fileName.isNull())
+		{
+			QPixmap pixMap = scene->views().front()->grab();
+			pixMap.save(fileName);
+		}
+	}
+	else
+	{
+		std::cout << "Cannot export project, view not found";
+	}
 }
 
 

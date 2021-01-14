@@ -2,7 +2,8 @@
 #include <QGraphicsScene>
 #include "UtilitiesGrid.h"
 #include "UtilityPanelWidget.h"
-
+#include <QGraphicsView>
+#include <QFileDialog>
 class GlobalStats
 {
 	static int wallWidth;
@@ -45,4 +46,5 @@ public:
 	static void SetWindowIcon(QString path);
 	static QString GetWindowIcon();
 	static bool GetTogglePropertyStatus();
+	static void ExportProject();
 };

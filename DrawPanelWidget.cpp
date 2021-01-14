@@ -46,6 +46,7 @@ void DrawPanelWidget::keyPressEvent(QKeyEvent* event)
 	{
 		GlobalStats::currentOperation = GlobalStats::SceneOperationType::INSERT_WALL;
 		cout << "Current Operation: Wall insert" << endl;
+		GlobalStats::ExportProject();
 	}
 	else if(event->key()==Qt::Key_Delete)
 	{
@@ -72,6 +73,14 @@ void DrawPanelWidget::keyPressEvent(QKeyEvent* event)
 		GlobalStats::currentOperation = GlobalStats::SceneOperationType::INSERT_ROOM;
 		cout << "Current Operation: Insert Room" << endl;
 	}
+	else if (event->key() == Qt::Key_S)
+	{
+		if(event->modifiers()&Qt::ControlModifier)
+		{
+			cout << "Current Operation: Export Data" << endl;
+			GlobalStats::ExportProject();
+		}
+	}
 }
 
 //Map operations on Middle Scroll button
@@ -82,7 +91,9 @@ void DrawPanelWidget::mousePressEvent(QMouseEvent* event)
 	switch(GlobalStats::currentOperation)
 	{
 		case GlobalStats::SceneOperationType::NONE:
-			cout << "No operation selected" << endl;
+			{
+				cout << "No operation selected" << endl;
+			}
 			break;
 
 		case GlobalStats::SceneOperationType::INSERT_WALL:
@@ -187,6 +198,7 @@ void DrawPanelWidget::mousePressEvent(QMouseEvent* event)
 			}
 		}
 		break;
+
 	}
 }
 
