@@ -12,6 +12,7 @@ using namespace std;
 class DrawPanelWidget :public QWidget
 {
 private:
+	bool roomStageCycle;
 	QGraphicsView* view;
 	QGraphicsScene* scene;
 public:

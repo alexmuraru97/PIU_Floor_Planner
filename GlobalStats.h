@@ -18,7 +18,7 @@ class GlobalStats
 	static QString doorIcon;
 	static QString windowIcon;
 public:
-	enum class SceneOperationType { NONE, INSERT_WALL, INSERT_DOOR, INSERT_WINDOW, INSERT_LABEL,DELETE };
+	enum class SceneOperationType { NONE, INSERT_WALL, INSERT_DOOR, INSERT_WINDOW, INSERT_LABEL,DELETE,INSERT_ROOM };
 	static SceneOperationType currentOperation;
 	static QPoint mousePosition;
 	static int GetWallWidth();
