@@ -101,6 +101,9 @@
     <ClInclude Include="CustomScene.h">
       <Filter>Header Files\Custom Holders</Filter>
     </ClInclude>
+    <ClInclude Include="Furniture.h">
+      <Filter>Header Files\Scene Elements</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="UtilitiesFurniture.h">
@@ -164,6 +167,9 @@
     </ClCompile>
     <ClCompile Include="CustomGraphicsView.cpp">
       <Filter>Sources\Custom Holders</Filter>
+    </ClCompile>
+    <ClCompile Include="Furniture.cpp">
+      <Filter>Sources\Scene Elements</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
