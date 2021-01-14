@@ -21,5 +21,5 @@ UtilityPanelWidget::UtilityPanelWidget():QStackedWidget()
 	GlobalStats::SetPropertyPanelIndex(3);
 	GlobalStats::SetLeftMenuPanel(this);
 
-	//TODO Make a universal setting panel (line width,circle,grid step etc)
+
 }

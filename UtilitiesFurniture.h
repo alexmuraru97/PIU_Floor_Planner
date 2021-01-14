@@ -12,10 +12,11 @@ class UtilitiesFurniture : public QWidget
 {
 	Q_OBJECT
 private:
-	QHBoxLayout* hlayout;
-	QVBoxLayout* vlayout1;
-	QVBoxLayout* vlayout2;
-	QVBoxLayout* vlayout;
+	QHBoxLayout* rowLayout;
+	QVBoxLayout* leftColumn;
+	QVBoxLayout* rightColumn;
+	QVBoxLayout* panelHolderLayout;
+	QComboBox* itemCategoryComboList;
 	QMap<QString, QList<QPair<QString, QImage*>>>* furniture;
 public:
 	UtilitiesFurniture();
