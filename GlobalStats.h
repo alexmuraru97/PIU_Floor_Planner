@@ -6,6 +6,8 @@
 #include <QFileDialog>
 #include <iostream>
 #include <qgraphicsitem.h>
+#include <QMessageBox>
+
 class GlobalStats
 {
 	static int wallWidth;
@@ -21,7 +23,7 @@ class GlobalStats
 	static QString doorIcon;
 	static QString windowIcon;
 public:
-	enum class SceneOperationType { NONE, INSERT_WALL, INSERT_DOOR, INSERT_WINDOW, INSERT_LABEL,DELETE,INSERT_ROOM };
+	enum class SceneOperationType { NONE, INSERT_WALL, INSERT_DOOR, INSERT_WINDOW, INSERT_LABEL,DELETE,INSERT_ROOM,SPLIT_WALL };
 	static SceneOperationType currentOperation;
 	static QPoint mousePosition;
 	static int GetWallWidth();

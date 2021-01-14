@@ -92,9 +92,6 @@
     <ClInclude Include="WallItem.h">
       <Filter>Header Files\Interfaces</Filter>
     </ClInclude>
-    <ClInclude Include="Label.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CustomGraphicsView.h">
       <Filter>Header Files\Custom Holders</Filter>
     </ClInclude>
@@ -102,6 +99,9 @@
       <Filter>Header Files\Custom Holders</Filter>
     </ClInclude>
     <ClInclude Include="Furniture.h">
+      <Filter>Header Files\Scene Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Label.h">
       <Filter>Header Files\Scene Elements</Filter>
     </ClInclude>
   </ItemGroup>

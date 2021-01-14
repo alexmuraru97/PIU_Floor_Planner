@@ -151,10 +151,18 @@ void GlobalStats::ExportProject()
 
 void GlobalStats::ClearScene()
 {
-	while(scene->items().size()>0)
+	QMessageBox msgBox;
+	msgBox.setText("Are you sure you want to clear the scene?");
+	msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
+	msgBox.setDefaultButton(QMessageBox::Cancel);
+	int ret = msgBox.exec();
+	if(ret==QMessageBox::Ok)
 	{
-		QGraphicsItem* item = scene->items().front();
-		scene->removeItem(item);
+		while (scene->items().size() > 0)
+		{
+			QGraphicsItem* item = scene->items().front();
+			scene->removeItem(item);
+		}
 	}
 }
 

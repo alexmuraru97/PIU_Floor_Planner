@@ -16,7 +16,6 @@ class Connection:public QGraphicsEllipseItem
 private:
 	QPoint point;
 	list<QGraphicsItem*> connectedItems;
-	bool dragOver = false;
 public:
 	Connection(int x, int y);
 	void addWall(Wall* wall);

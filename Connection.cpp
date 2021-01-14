@@ -105,22 +105,22 @@ QPoint Connection::getPoint()
 
 void Connection::mousePressEvent(QGraphicsSceneMouseEvent* event)
 {
-	if(event->button()==Qt::MidButton)
+	if(event->button()!=Qt::LeftButton)
 	{
 		event->ignore();
 		return;
 	}
-	dragOver = true;
+	event->accept();
 }
 
 void Connection::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
 {
-	dragOver = false;
-	if (event->button() == Qt::MidButton)
+	if (event->button() != Qt::LeftButton)
 	{
 		event->ignore();
 		return;
 	}
+	event->accept();
 	QList<QGraphicsItem*>itemList=scene()->collidingItems(this, Qt::IntersectsItemShape);
 
 	//Daca fac merge pe alt Connection
@@ -259,27 +259,21 @@ void Connection::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
 
 void Connection::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
 {
-	if (event->button() == Qt::MidButton)
-	{
-		event->ignore();
-		return;
-	}
 	GlobalStats::mousePosition.setX(event->pos().x());
 	GlobalStats::mousePosition.setY(event->pos().y());
-	if(dragOver)
+
+	point.setX(round(event->pos().x()/GlobalStats::GetGridStep())*GlobalStats::GetGridStep());
+	point.setY(round(event->pos().y()/GlobalStats::GetGridStep())*GlobalStats::GetGridStep());
+	this->setRect(QRectF(point.x() - GlobalStats::GetConnRadius() / 2.0, point.y() - GlobalStats::GetConnRadius() / 2.0, GlobalStats::GetConnRadius(), GlobalStats::GetConnRadius()));
+	for (Wall* wall : getWalls())
 	{
-		point.setX(round(event->pos().x()/GlobalStats::GetGridStep())*GlobalStats::GetGridStep());
-		point.setY(round(event->pos().y()/GlobalStats::GetGridStep())*GlobalStats::GetGridStep());
-		this->setRect(QRectF(point.x() - GlobalStats::GetConnRadius() / 2.0, point.y() - GlobalStats::GetConnRadius() / 2.0, GlobalStats::GetConnRadius(), GlobalStats::GetConnRadius()));
-		for (Wall* wall : getWalls())
-		{
-			wall->updatePositions();
-		}
-		for (WallItem* wallItems : getWallItem())
-		{
-			wallItems->updatePositions();
-		}
+		wall->updatePositions();
 	}
+	for (WallItem* wallItems : getWallItem())
+	{
+		wallItems->updatePositions();
+	}
+
 }
 
 

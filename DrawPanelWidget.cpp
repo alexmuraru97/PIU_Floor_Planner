@@ -23,10 +23,6 @@ DrawPanelWidget::DrawPanelWidget()
 	view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	
 	
-	//create wall
-	scene->addItem(new Wall(10, 10, 100, 100));
-	scene->addItem(new Wall(10, 30, 100, 120));
-	scene->addItem(new Wall(10, 50, 100, 140));
 	//Show whole scene
 	view->setScene(scene);
 	view->show();
@@ -78,6 +74,9 @@ void DrawPanelWidget::keyPressEvent(QKeyEvent* event)
 		{
 			cout << "Current Operation: Export Data" << endl;
 			GlobalStats::ExportProject();
+		}else{
+			GlobalStats::currentOperation = GlobalStats::SceneOperationType::SPLIT_WALL;
+			cout << "Current Operation: Split Wall" << endl;
 		}
 	}
 	else if (event->key() == Qt::Key_C)
@@ -87,10 +86,14 @@ void DrawPanelWidget::keyPressEvent(QKeyEvent* event)
 	}
 }
 
-//Map operations on Middle Scroll button
 void DrawPanelWidget::mousePressEvent(QMouseEvent* event)
 {
-	
+	if(event->button()!=Qt::RightButton)
+	{
+		event->ignore();
+		return;
+	}
+	event->accept();
 	QPointF mousePoint = view->mapToScene(event->pos());
 	switch(GlobalStats::currentOperation)
 	{
@@ -167,8 +170,6 @@ void DrawPanelWidget::mousePressEvent(QMouseEvent* event)
 				roomStageCycle = false;
 			}else
 			{
-				cout << "First point x=" << firstPoint.x() << " y=" << firstPoint.y() << endl;
-				cout << "2nd point x=" << mousePoint.x() << " y=" << mousePoint.y() << endl;
 				scene->removeItem(firstPointConnection);
 				delete firstPointConnection;
 				firstPointConnection = nullptr;
@@ -202,7 +203,17 @@ void DrawPanelWidget::mousePressEvent(QMouseEvent* event)
 			}
 		}
 		break;
-
+		
+		case GlobalStats::SceneOperationType::SPLIT_WALL:
+		{
+			QGraphicsItem* it = scene->itemAt(mousePoint, QTransform());
+			if (dynamic_cast<Wall*>(it) != nullptr)
+			{
+				GlobalStats::currentOperation = GlobalStats::SceneOperationType::NONE;
+				dynamic_cast<Wall*>(it)->splitWall(mousePoint);
+			}
+		}
+		break;
 	}
 }
 

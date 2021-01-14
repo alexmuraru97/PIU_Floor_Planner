@@ -62,15 +62,15 @@ Wall::Wall(Connection* c1, Connection* c2)
 //Show Grabbing points on double click
 void Wall::mouseDoubleClickEvent(QGraphicsSceneMouseEvent* event)
 {
-	if(event->button()==Qt::MidButton)
+	if(event->button()!=Qt::LeftButton)
 	{
 		event->ignore();
 		return;
 	}
+	event->accept();
 	Wall* aux = nullptr;
 	if (GlobalStats::GetIsShowingConnections())
 	{
-
 		//Compute the distance to both Connection points of wall
 		double distPoint1 = sqrt(pow(connections[0]->getPoint().x() - event->pos().x(), 2.0) + pow(connections[0]->getPoint().y() - event->pos().y(), 2));
 		double distPoint2 = sqrt(pow(connections[1]->getPoint().x() - event->pos().x(), 2.0) + pow(connections[1]->getPoint().y() - event->pos().y(), 2));
@@ -126,30 +126,6 @@ void Wall::mouseDoubleClickEvent(QGraphicsSceneMouseEvent* event)
 }
 
 
-//Wall Split on Right click
-void Wall::contextMenuEvent(QGraphicsSceneContextMenuEvent* event)
-{
-	Connection* midConnection = new Connection(event->pos().x(), event->pos().y());
-	Wall* newWall = new Wall(midConnection, connections[1]);
-	connections[1]->addWall(newWall);
-	connections[1]->removeWall(this);
-	GlobalStats::GetGraphicsScene()->addItem(newWall);
-	GlobalStats::GetGraphicsScene()->addItem(midConnection);
-	connections[1] = midConnection;
-	midConnection->addWall(this);
-	Wall* aux = nullptr;
-	for (QGraphicsItem* item : GlobalStats::GetGraphicsScene()->items())
-	{
-		aux = dynamic_cast<Wall*>(item);
-		if (aux != nullptr)
-		{
-			aux->showConnections();
-			aux = nullptr;
-		}
-	}
-}
-
-
 
 //Redraw Lines
 void Wall::updatePositions()
@@ -178,6 +154,28 @@ void Wall::setLineWidth()
 {
 	QPen a(Qt::black, GlobalStats::GetWallWidth());
 	this->setPen(a);
+}
+
+void Wall::splitWall(QPointF pos)
+{
+	Connection* midConnection = new Connection(pos.x(), pos.y());
+	Wall* newWall = new Wall(midConnection, connections[1]);
+	connections[1]->addWall(newWall);
+	connections[1]->removeWall(this);
+	GlobalStats::GetGraphicsScene()->addItem(newWall);
+	GlobalStats::GetGraphicsScene()->addItem(midConnection);
+	connections[1] = midConnection;
+	midConnection->addWall(this);
+	Wall* aux = nullptr;
+	for (QGraphicsItem* item : GlobalStats::GetGraphicsScene()->items())
+	{
+		aux = dynamic_cast<Wall*>(item);
+		if (aux != nullptr)
+		{
+			aux->showConnections();
+			aux = nullptr;
+		}
+	}
 }
 
 bool Wall::containsConnection(Connection* conn)
