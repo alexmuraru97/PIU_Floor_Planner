@@ -7,7 +7,9 @@
 #include <QDir>
 #include <iostream>
 #include <QPixmap>
-#include <QScrollArea>
+#include <QMouseEvent>
+#include "FurnitureIcon.h"
+
 class UtilitiesFurniture : public QWidget
 {
 	Q_OBJECT

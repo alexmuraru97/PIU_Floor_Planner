@@ -51,6 +51,9 @@
     <Filter Include="Header Files\Custom Holders">
       <UniqueIdentifier>{65bbd551-4bc6-48c1-9423-c60408d066d4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\LeftPanel">
+      <UniqueIdentifier>{15ccfb93-9090-4e6d-a9ce-2564f6038baa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DrawPanelWidget.h">
@@ -66,12 +69,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MenuWidget.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UtilitiesDraw.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UtilitiesGrid.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="UtilityPanelWidget.h">
@@ -104,13 +101,22 @@
     <ClInclude Include="Label.h">
       <Filter>Header Files\Scene Elements</Filter>
     </ClInclude>
+    <ClInclude Include="UtilitiesGrid.h">
+      <Filter>Header Files\LeftPanel</Filter>
+    </ClInclude>
+    <ClInclude Include="UtilitiesDraw.h">
+      <Filter>Header Files\LeftPanel</Filter>
+    </ClInclude>
+    <ClInclude Include="FurnitureIcon.h">
+      <Filter>Header Files\LeftPanel</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="UtilitiesFurniture.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\LeftPanel</Filter>
     </QtMoc>
     <QtMoc Include="UtilitiesLabel.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\LeftPanel</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
@@ -170,6 +176,9 @@
     </ClCompile>
     <ClCompile Include="Furniture.cpp">
       <Filter>Sources\Scene Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="FurnitureIcon.cpp">
+      <Filter>Sources\LeftPanelStack</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

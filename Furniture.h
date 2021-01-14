@@ -4,8 +4,11 @@
 #include <QGraphicsSceneMouseEvent>
 class Furniture :public QGraphicsPixmapItem
 {
-	Furniture(int x, int y,QString path);
+private:
+	QImage img;
+public:
 	
+	Furniture(int x, int y,QString path);
 	void mouseDoubleClickEvent(QGraphicsSceneMouseEvent* event) override;
 	~Furniture(){};
 };

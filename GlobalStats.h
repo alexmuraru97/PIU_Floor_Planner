@@ -22,8 +22,9 @@ class GlobalStats
 	static UtilityPanelWidget* leftMenuPanel;
 	static QString doorIcon;
 	static QString windowIcon;
+	static QString furnitureIcon;
 public:
-	enum class SceneOperationType { NONE, INSERT_WALL, INSERT_DOOR, INSERT_WINDOW, INSERT_LABEL,DELETE,INSERT_ROOM,SPLIT_WALL };
+	enum class SceneOperationType { NONE, INSERT_WALL, INSERT_DOOR, INSERT_WINDOW, INSERT_LABEL,DELETE,INSERT_ROOM,SPLIT_WALL,INSERT_FURNITURE };
 	static SceneOperationType currentOperation;
 	static QPoint mousePosition;
 	static int GetWallWidth();
@@ -52,4 +53,8 @@ public:
 	static bool GetTogglePropertyStatus();
 	static void ExportProject();
 	static void ClearScene();
+	static void SetFurnitureIcon(QString path);
+	static QString GetFurnitureIcon();
+	static SceneOperationType GetOperationType();
+	static void SetOperationType(SceneOperationType op);
 };

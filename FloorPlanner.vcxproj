@@ -17,6 +17,7 @@
     <ClInclude Include="Door.h" />
     <ClInclude Include="DrawPanelWidget.h" />
     <ClInclude Include="Furniture.h" />
+    <ClInclude Include="FurnitureIcon.h" />
     <ClInclude Include="GlobalStats.h" />
     <ClInclude Include="InOutMenuWidget.h" />
     <ClInclude Include="Label.h" />
@@ -38,6 +39,7 @@
     <ClCompile Include="Door.cpp" />
     <ClCompile Include="DrawPanelWidget.cpp" />
     <ClCompile Include="Furniture.cpp" />
+    <ClCompile Include="FurnitureIcon.cpp" />
     <ClCompile Include="GlobalStats.cpp" />
     <ClCompile Include="InOutMenuWidget.cpp" />
     <ClCompile Include="Label.cpp" />

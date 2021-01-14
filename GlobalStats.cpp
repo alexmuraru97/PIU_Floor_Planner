@@ -12,6 +12,7 @@ QPoint GlobalStats::mousePosition(0,0);
 UtilityPanelWidget* GlobalStats::leftMenuPanel=nullptr;
 QString GlobalStats::doorIcon="";
 QString GlobalStats::windowIcon="";
+QString GlobalStats::furnitureIcon = "";
 bool GlobalStats::togglePropertyStatus = false;
 GlobalStats::SceneOperationType GlobalStats::currentOperation = GlobalStats::SceneOperationType::NONE;
 
@@ -164,6 +165,26 @@ void GlobalStats::ClearScene()
 			scene->removeItem(item);
 		}
 	}
+}
+
+void GlobalStats::SetFurnitureIcon(QString path)
+{
+	GlobalStats::furnitureIcon = path;
+}
+
+QString GlobalStats::GetFurnitureIcon()
+{
+	return GlobalStats::furnitureIcon;
+}
+
+GlobalStats::SceneOperationType GlobalStats::GetOperationType()
+{
+	return GlobalStats::currentOperation;
+}
+
+void GlobalStats::SetOperationType(SceneOperationType op)
+{
+	GlobalStats::currentOperation = op;
 }
 
 

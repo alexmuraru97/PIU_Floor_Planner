@@ -40,32 +40,32 @@ void DrawPanelWidget::keyPressEvent(QKeyEvent* event)
 {
 	if(event->key()==Qt::Key_W)
 	{
-		GlobalStats::currentOperation = GlobalStats::SceneOperationType::INSERT_WALL;
+		GlobalStats::SetOperationType(GlobalStats::SceneOperationType::INSERT_WALL);
 		cout << "Current Operation: Wall insert" << endl;
 	}
 	else if(event->key()==Qt::Key_Delete)
 	{
-		GlobalStats::currentOperation = GlobalStats::SceneOperationType::DELETE;
+		GlobalStats::SetOperationType(GlobalStats::SceneOperationType::DELETE);
 		cout << "Current Operation: Delete" << endl;
 	}
 	else if (event->key() == Qt::Key_D)
 	{
-		GlobalStats::currentOperation = GlobalStats::SceneOperationType::INSERT_DOOR;
+		GlobalStats::SetOperationType(GlobalStats::SceneOperationType::INSERT_DOOR);
 		cout << "Current Operation: Insert Door" << endl;
 	}
 	else if (event->key() == Qt::Key_F)
 	{
-		GlobalStats::currentOperation = GlobalStats::SceneOperationType::INSERT_WINDOW;
+		GlobalStats::SetOperationType(GlobalStats::SceneOperationType::INSERT_WINDOW);
 		cout << "Current Operation: Insert Window" << endl;
 	}
 	else if (event->key() == Qt::Key_L)
 	{
-		GlobalStats::currentOperation = GlobalStats::SceneOperationType::INSERT_LABEL;
+		GlobalStats::SetOperationType(GlobalStats::SceneOperationType::INSERT_LABEL);
 		cout << "Current Operation: Insert Label" << endl;
 	}
 	else if (event->key() == Qt::Key_R)
 	{
-		GlobalStats::currentOperation = GlobalStats::SceneOperationType::INSERT_ROOM;
+		GlobalStats::SetOperationType(GlobalStats::SceneOperationType::INSERT_ROOM);
 		cout << "Current Operation: Insert Room" << endl;
 	}
 	else if (event->key() == Qt::Key_S)
@@ -75,7 +75,7 @@ void DrawPanelWidget::keyPressEvent(QKeyEvent* event)
 			cout << "Current Operation: Export Data" << endl;
 			GlobalStats::ExportProject();
 		}else{
-			GlobalStats::currentOperation = GlobalStats::SceneOperationType::SPLIT_WALL;
+			GlobalStats::SetOperationType(GlobalStats::SceneOperationType::SPLIT_WALL);
 			cout << "Current Operation: Split Wall" << endl;
 		}
 	}
@@ -95,7 +95,7 @@ void DrawPanelWidget::mousePressEvent(QMouseEvent* event)
 	}
 	event->accept();
 	QPointF mousePoint = view->mapToScene(event->pos());
-	switch(GlobalStats::currentOperation)
+	switch(GlobalStats::GetOperationType())
 	{
 		case GlobalStats::SceneOperationType::NONE:
 			{
@@ -105,7 +105,7 @@ void DrawPanelWidget::mousePressEvent(QMouseEvent* event)
 
 		case GlobalStats::SceneOperationType::INSERT_WALL:
 			{
-				GlobalStats::currentOperation = GlobalStats::SceneOperationType::NONE;
+				GlobalStats::SetOperationType(GlobalStats::SceneOperationType::NONE);
 				scene->addItem(new Wall(mousePoint.x() - 25, mousePoint.y(), mousePoint.x() + 25, mousePoint.y()));
 			}
 			break;
@@ -124,7 +124,7 @@ void DrawPanelWidget::mousePressEvent(QMouseEvent* event)
 				{
 					scene->removeItem(it);
 					delete it;
-					GlobalStats::currentOperation = GlobalStats::SceneOperationType::NONE;
+					GlobalStats::SetOperationType(GlobalStats::SceneOperationType::NONE);
 				}
 			}
 			break;
@@ -134,7 +134,7 @@ void DrawPanelWidget::mousePressEvent(QMouseEvent* event)
 				QGraphicsItem* it = scene->itemAt(mousePoint, QTransform());
 				if (dynamic_cast<Wall*>(it) != nullptr)
 				{
-					GlobalStats::currentOperation = GlobalStats::SceneOperationType::NONE;
+					GlobalStats::SetOperationType(GlobalStats::SceneOperationType::NONE);
 					dynamic_cast<Wall*>(it)->addDoor();
 				}
 			}
@@ -145,7 +145,7 @@ void DrawPanelWidget::mousePressEvent(QMouseEvent* event)
 				QGraphicsItem* it = scene->itemAt(mousePoint, QTransform());
 				if (dynamic_cast<Wall*>(it) != nullptr)
 				{
-					GlobalStats::currentOperation = GlobalStats::SceneOperationType::NONE;
+					GlobalStats::SetOperationType(GlobalStats::SceneOperationType::NONE);
 					dynamic_cast<Wall*>(it)->addWindow();
 				}
 			}
@@ -153,7 +153,7 @@ void DrawPanelWidget::mousePressEvent(QMouseEvent* event)
 
 		case GlobalStats::SceneOperationType::INSERT_LABEL:
 			{
-				GlobalStats::currentOperation = GlobalStats::SceneOperationType::NONE;
+				GlobalStats::SetOperationType(GlobalStats::SceneOperationType::NONE);
 				scene->addItem(new Label("Test message long", mousePoint.x(), mousePoint.y()));
 			}
 			break;
@@ -178,7 +178,7 @@ void DrawPanelWidget::mousePressEvent(QMouseEvent* event)
 					cout << "Couldn't create room, points are too close! Choose points again!"<<endl;
 				}else
 				{
-					GlobalStats::currentOperation = GlobalStats::SceneOperationType::NONE;
+					GlobalStats::SetOperationType(GlobalStats::SceneOperationType::NONE);
 					Connection* c1 = new Connection(firstPoint.x(),firstPoint.y());
 					Connection* c2 = new Connection(firstPoint.x(),mousePoint.y());
 					Connection* c3 = new Connection(mousePoint.x(),firstPoint.y());
@@ -209,9 +209,17 @@ void DrawPanelWidget::mousePressEvent(QMouseEvent* event)
 			QGraphicsItem* it = scene->itemAt(mousePoint, QTransform());
 			if (dynamic_cast<Wall*>(it) != nullptr)
 			{
-				GlobalStats::currentOperation = GlobalStats::SceneOperationType::NONE;
+				GlobalStats::SetOperationType(GlobalStats::SceneOperationType::NONE);
 				dynamic_cast<Wall*>(it)->splitWall(mousePoint);
 			}
+		}
+		break;
+
+		case GlobalStats::SceneOperationType::INSERT_FURNITURE:
+		{
+			GlobalStats::SetOperationType(GlobalStats::SceneOperationType::NONE);
+			QGraphicsItem* it = scene->itemAt(mousePoint, QTransform());
+			scene->addItem(new Furniture(mousePoint.x(),mousePoint.y(),GlobalStats::GetFurnitureIcon()));
 		}
 		break;
 	}

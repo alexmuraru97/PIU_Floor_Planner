@@ -8,6 +8,7 @@
 #include "GlobalStats.h"
 #include "CustomGraphicsView.h"
 #include "Door.h"
+#include "Furniture.h"
 using namespace std;
 class DrawPanelWidget :public QWidget
 {

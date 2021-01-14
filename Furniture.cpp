@@ -1,8 +1,12 @@
 #include "Furniture.h"
 
-Furniture::Furniture(int x, int y, QString path)
+Furniture::Furniture(int x, int y, QString path):QGraphicsPixmapItem()
 {
+	img = QImage(path);
+	this->setPixmap(QPixmap::fromImage(img));
 	setFlags(QGraphicsItem::ItemIsMovable | QGraphicsItem::ItemIsSelectable);
+	this->setX(x);
+	this->setY(y);
 }
 
 void Furniture::mouseDoubleClickEvent(QGraphicsSceneMouseEvent* event)
@@ -21,4 +25,8 @@ void Furniture::mouseDoubleClickEvent(QGraphicsSceneMouseEvent* event)
 	{
 		GlobalStats::ToggleOnPropertyMenu();
 	}
+}
+
+Furniture::~Furniture()
+{
 }

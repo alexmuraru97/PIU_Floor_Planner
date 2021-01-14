@@ -1,11 +1,9 @@
 #include "UtilitiesFurniture.h"
 
-
 using namespace std;
 
 UtilitiesFurniture::UtilitiesFurniture()
 {
-	//this->setStyleSheet("QWidget {background: #00FFFF;}");
 	rowLayout = new QHBoxLayout();
 	leftColumn = new QVBoxLayout();
 	rightColumn = new QVBoxLayout();
@@ -14,19 +12,6 @@ UtilitiesFurniture::UtilitiesFurniture()
 	panelHolderLayout->setSpacing(40);
 
 	this->setLayout(panelHolderLayout);
-
-	/*QStringList commands = { "Living room furniture", "kitchen furniture", "Dining room furniture", "Bedroom furniture","Bathroom furniture","Hallway furniture" };
-	QComboBox* combo = new QComboBox(this);
-	combo->addItems(commands);
-	combo->setStyleSheet("border: 1px solid gray;border-radius: 10px;padding: 0 8px;");
-	combo->setMinimumHeight(30);
-
-	combo->setPlaceholderText(QStringLiteral("--Select Room Type--"));
-	combo->setCurrentIndex(-1);
-
-	connect(combo, SIGNAL(currentIndexChanged(int)), this, SLOT(indexChanged(int)));
-	vlayout->addWidget(combo);*/
-
 
 	QDir directory = QDir("./Assets/Furniture");
 
@@ -65,6 +50,7 @@ UtilitiesFurniture::UtilitiesFurniture()
 }
 
 
+
 void  UtilitiesFurniture::indexChanged(int index)
 {
 	QLayoutItem* child;
@@ -83,13 +69,12 @@ void  UtilitiesFurniture::indexChanged(int index)
 		}
 	}
 	
-	cout << itemCategoryComboList->currentText().toStdString() << endl;
+
 	for (int i = 0; i < furniture->value(itemCategoryComboList->currentText()).count(); i++)
 	{
-		QLabel* itemLabel = new QLabel();
+		FurnitureIcon* itemLabel = new FurnitureIcon(furniture->value(itemCategoryComboList->currentText()).at(i).first, furniture->value(itemCategoryComboList->currentText()).at(i).second);
 		itemLabel->setFixedSize(160, 120);
 		itemLabel->setAlignment(Qt::AlignCenter);
-		itemLabel->setPixmap(QPixmap::fromImage(furniture->value(itemCategoryComboList->currentText()).at(i).second->scaled(100, 100)));
 		if (i % 2 == 0)
 		{
 			leftColumn->addWidget(itemLabel);
@@ -99,7 +84,6 @@ void  UtilitiesFurniture::indexChanged(int index)
 			rightColumn->addWidget(itemLabel);
 		}
 	}
-
 	
 }
 
