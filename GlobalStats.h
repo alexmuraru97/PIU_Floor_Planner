@@ -5,7 +5,6 @@
 
 class GlobalStats
 {
-
 	static int wallWidth;
 	static int gridStep;
 	static int connRadius;

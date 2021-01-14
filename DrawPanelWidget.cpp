@@ -41,7 +41,6 @@ void DrawPanelWidget::resizeEvent(QResizeEvent* event)
 //Map keys on operations
 void DrawPanelWidget::keyPressEvent(QKeyEvent* event)
 {
-	QPointF mousePoint = view->mapToScene(view->mapFromGlobal(QCursor::pos()));
 	if(event->key()==Qt::Key_W)
 	{
 		GlobalStats::currentOperation = GlobalStats::SceneOperationType::INSERT_WALL;
