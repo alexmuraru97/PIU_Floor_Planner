@@ -31,6 +31,12 @@ DoorProperty::DoorProperty(Door* door,QWidget* parent):QWidget(parent)
 	connect(flipHorizontButton, &QPushButton::pressed, this, &DoorProperty::FlipHorizontally);
 }
 
+DoorProperty::~DoorProperty()
+{
+	delete flipHorizontButton;
+	delete flipVertButton;
+}
+
 void DoorProperty::FlipVertically()
 {
 	this->door->flipDoorVertically();

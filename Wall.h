@@ -5,10 +5,12 @@
 #include <QGraphicsScene>
 #include <math.h>
 #include <QGraphicsSceneContextMenuEvent>
+
 //Circular dependency
 class Wall;
 #include "Connection.h"
 #include "Window.h"
+#include "WallProperty.h"
 
 class Wall:public QGraphicsLineItem
 {

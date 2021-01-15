@@ -7,13 +7,11 @@ UtilitiesGrid::UtilitiesGrid()
 
 void UtilitiesGrid::ClearWidgets()
 {
-	while (layout.count() > 0)
-	{
-		delete layout.takeAt(0);
-	}
+	qDeleteAll(this->findChildren<QWidget*>("", Qt::FindDirectChildrenOnly));
 }
 
 void UtilitiesGrid::AddWidget(QWidget* widget)
 {
+	ClearWidgets();
 	layout.addWidget(widget);
 }

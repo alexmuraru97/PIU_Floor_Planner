@@ -1,7 +1,7 @@
 #include "GlobalStats.h"
 
-int GlobalStats::wallWidth = 2;
-int GlobalStats::gridStep = 2;
+int GlobalStats::wallWidth = 1;
+int GlobalStats::gridStep = 1;
 int GlobalStats::connRadius = 4;
 int GlobalStats::oldPanelIndex = 1;
 int GlobalStats::propertyPanelIndex = 3;
@@ -200,4 +200,5 @@ void GlobalStats::ToggleOffPropertyMenu()
 	GlobalStats::leftMenuPanel->setCurrentIndex(GlobalStats::oldPanelIndex);
 	GlobalStats::togglePropertyStatus = false;
 	propertyPanelHolder->ClearWidgets();
+	
 }

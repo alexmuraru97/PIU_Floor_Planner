@@ -76,7 +76,7 @@ void Wall::mouseDoubleClickEvent(QGraphicsSceneMouseEvent* event)
 		GlobalStats::ToggleOffPropertyMenu();
 	}else
 	{
-		GlobalStats::ToggleOnPropertyMenu();
+		GlobalStats::ToggleOnPropertyMenu(new WallProperty(this));
 	}
 	
 	if (GlobalStats::GetIsShowingConnections())
