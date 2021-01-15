@@ -23,7 +23,8 @@ UtilitiesLabel::UtilitiesLabel()
 
 	vlayout->addWidget(setRoomType);
 
-	QPushButton* addLabel = new QPushButton("Add Label");
+	HandlerButton* addLabel = new HandlerButton(GlobalStats::SceneOperationType::INSERT_LABEL, nullptr, this);
+	addLabel->setText("Add Label");
 	addLabel->setStyleSheet("border-width: 2px; border-radius: 20px");
 	addLabel->setMinimumSize(100, 50);
 	vlayout->addWidget(addLabel);
