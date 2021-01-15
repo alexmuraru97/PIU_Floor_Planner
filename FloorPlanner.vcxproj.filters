@@ -127,6 +127,9 @@
     <QtMoc Include="WallProperty.h">
       <Filter>Header Files\PropertyPanels</Filter>
     </QtMoc>
+    <QtMoc Include="FurnitureProperty.h">
+      <Filter>Header Files\PropertyPanels</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -196,6 +199,9 @@
       <Filter>Sources\Property Panels</Filter>
     </ClCompile>
     <ClCompile Include="WallProperty.cpp">
+      <Filter>Sources\Property Panels</Filter>
+    </ClCompile>
+    <ClCompile Include="FurnitureProperty.cpp">
       <Filter>Sources\Property Panels</Filter>
     </ClCompile>
   </ItemGroup>

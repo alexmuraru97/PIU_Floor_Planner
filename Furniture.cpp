@@ -10,6 +10,17 @@ Furniture::Furniture(int x, int y, QString path):QGraphicsPixmapItem()
 	this->setY(y);
 }
 
+void Furniture::SetWidth(int width)
+{
+;
+	this->setPixmap(QPixmap::fromImage(img).scaled(width, pixmap().height(), Qt::IgnoreAspectRatio));
+}
+
+void Furniture::SetHeight(int height)
+{
+	this->setPixmap(QPixmap::fromImage(img).scaled(pixmap().width(), height, Qt::IgnoreAspectRatio));
+}
+
 void Furniture::mouseDoubleClickEvent(QGraphicsSceneMouseEvent* event)
 {
 	if (event->button() != Qt::LeftButton)
@@ -24,7 +35,7 @@ void Furniture::mouseDoubleClickEvent(QGraphicsSceneMouseEvent* event)
 	}
 	else
 	{
-		GlobalStats::ToggleOnPropertyMenu();
+		GlobalStats::ToggleOnPropertyMenu(new FurnitureProperty(this));
 	}
 }
 

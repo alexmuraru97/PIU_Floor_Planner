@@ -19,6 +19,7 @@
     <ClInclude Include="DrawPanelWidget.h" />
     <ClInclude Include="Furniture.h" />
     <ClInclude Include="FurnitureIcon.h" />
+    <QtMoc Include="FurnitureProperty.h" />
     <ClInclude Include="GlobalStats.h" />
     <ClInclude Include="HandlerButton.h" />
     <ClInclude Include="InOutMenuWidget.h" />
@@ -44,6 +45,7 @@
     <ClCompile Include="DrawPanelWidget.cpp" />
     <ClCompile Include="Furniture.cpp" />
     <ClCompile Include="FurnitureIcon.cpp" />
+    <ClCompile Include="FurnitureProperty.cpp" />
     <ClCompile Include="GlobalStats.cpp" />
     <ClCompile Include="HandlerButton.cpp" />
     <ClCompile Include="InOutMenuWidget.cpp" />
