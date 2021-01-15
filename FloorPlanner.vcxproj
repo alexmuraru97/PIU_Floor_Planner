@@ -19,6 +19,7 @@
     <ClInclude Include="Furniture.h" />
     <ClInclude Include="FurnitureIcon.h" />
     <ClInclude Include="GlobalStats.h" />
+    <ClInclude Include="HandlerButton.h" />
     <ClInclude Include="InOutMenuWidget.h" />
     <ClInclude Include="Label.h" />
     <ClInclude Include="MenuButton.h" />
@@ -41,6 +42,7 @@
     <ClCompile Include="Furniture.cpp" />
     <ClCompile Include="FurnitureIcon.cpp" />
     <ClCompile Include="GlobalStats.cpp" />
+    <ClCompile Include="HandlerButton.cpp" />
     <ClCompile Include="InOutMenuWidget.cpp" />
     <ClCompile Include="Label.cpp" />
     <ClCompile Include="main.cpp" />

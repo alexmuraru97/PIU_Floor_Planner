@@ -18,12 +18,12 @@ InOutMenuWidget::InOutMenuWidget()
 	hlayout->setAlignment(Qt::AlignLeft);
 
 
-	MenuButton* clear = new MenuButton(stack, 1, this);
+	HandlerButton* clear = new HandlerButton(GlobalStats::SceneOperationType::NONE,GlobalStats::ClearScene, this);
 	clear->setText("Clear");
 	clear->setFixedSize(90, 40);
 	clear->setStyleSheet("border-width: 2px; border-radius: 20px");
-
-	MenuButton* exp = new MenuButton(stack, 2, this);
+	
+	HandlerButton* exp = new HandlerButton(GlobalStats::SceneOperationType::NONE, GlobalStats::ExportProject, this);
 	exp->setText("Export");
 	exp->setFixedSize(90, 40);
 	exp->setStyleSheet("border-width: 2px; border-radius: 20px");
