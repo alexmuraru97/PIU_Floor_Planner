@@ -15,6 +15,7 @@
     <ClInclude Include="CustomGraphicsView.h" />
     <ClInclude Include="CustomScene.h" />
     <ClInclude Include="Door.h" />
+    <QtMoc Include="DoorProperty.h" />
     <ClInclude Include="DrawPanelWidget.h" />
     <ClInclude Include="Furniture.h" />
     <ClInclude Include="FurnitureIcon.h" />
@@ -38,6 +39,7 @@
     <ClCompile Include="CustomGraphicsView.cpp" />
     <ClCompile Include="CustomScene.cpp" />
     <ClCompile Include="Door.cpp" />
+    <ClCompile Include="DoorProperty.cpp" />
     <ClCompile Include="DrawPanelWidget.cpp" />
     <ClCompile Include="Furniture.cpp" />
     <ClCompile Include="FurnitureIcon.cpp" />

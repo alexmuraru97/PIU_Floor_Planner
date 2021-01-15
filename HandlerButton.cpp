@@ -4,6 +4,7 @@ HandlerButton::HandlerButton(GlobalStats::SceneOperationType op, void(* fct)(), 
 {
 	this->operationType = op;
 	this->handlingFunction = fct;
+
 }
 
 void HandlerButton::enterEvent(QEvent* event)

@@ -71,6 +71,11 @@ void GlobalStats::SetPropertyPanelHolder(UtilitiesGrid* uGrid)
 	GlobalStats::propertyPanelHolder = uGrid;
 }
 
+UtilitiesGrid* GlobalStats::GetPropertyPanelHolder()
+{
+	return GlobalStats::propertyPanelHolder;
+}
+
 void GlobalStats::SetOldPanelIndex(int idx)
 {
 	GlobalStats::oldPanelIndex = idx;
@@ -183,7 +188,11 @@ void GlobalStats::ToggleOnPropertyMenu(QWidget* propertyWidget)
 {
 	GlobalStats::leftMenuPanel->setCurrentIndex(GlobalStats::propertyPanelIndex);
 	GlobalStats::togglePropertyStatus = true;
-	propertyPanelHolder->AddWidget(new QLabel("tteeeexxxt"));
+	if(propertyWidget!=nullptr)
+	{
+		propertyPanelHolder->AddWidget(propertyWidget);
+	}
+	
 }
 
 void GlobalStats::ToggleOffPropertyMenu()

@@ -17,7 +17,6 @@ public:
 	void deatach() override;
 	void updatePositions() override;
 	Connection** getConnections() override;
-	void mouseDoubleClickEvent(QGraphicsSceneMouseEvent* event) override;
 	
 	~Window();
 };

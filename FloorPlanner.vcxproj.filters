@@ -121,6 +121,9 @@
     <QtMoc Include="UtilitiesLabel.h">
       <Filter>Header Files\LeftPanel</Filter>
     </QtMoc>
+    <QtMoc Include="DoorProperty.h">
+      <Filter>Header Files\PropertyPanels</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -185,6 +188,9 @@
     </ClCompile>
     <ClCompile Include="HandlerButton.cpp">
       <Filter>Sources\Custom QT Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="DoorProperty.cpp">
+      <Filter>Sources\Property Panels</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

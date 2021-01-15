@@ -8,12 +8,12 @@
 class Door;
 #include "Connection.h"
 #include "WallItem.h"
-
+#include "DoorProperty.h"
 class Door:public WallItem
 {
 private:
 	QImage img;
-
+	bool vertMirrored;
 public:
 	Door(Connection* c1, Connection*c2);
 	double calculateRotation();

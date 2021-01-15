@@ -2,7 +2,6 @@
 
 UtilitiesGrid::UtilitiesGrid()
 {
-	this->setStyleSheet("QWidget {background: #00FF00;}");
 	this->setLayout(&layout);
 }
 
