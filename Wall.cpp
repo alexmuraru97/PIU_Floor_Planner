@@ -69,6 +69,16 @@ void Wall::mouseDoubleClickEvent(QGraphicsSceneMouseEvent* event)
 	}
 	event->accept();
 	Wall* aux = nullptr;
+	//TODO ADD WIDGET HERE
+	
+	if(GlobalStats::GetIsShowingConnections())
+	{
+		GlobalStats::ToggleOffPropertyMenu();
+	}else
+	{
+		GlobalStats::ToggleOnPropertyMenu();
+	}
+	
 	if (GlobalStats::GetIsShowingConnections())
 	{
 		//Compute the distance to both Connection points of wall
@@ -139,7 +149,6 @@ void Wall::hideConnections()
 	GlobalStats::SetIsShowingConnections(false);
 	connections[0]->hide();
 	connections[1]->hide();
-	GlobalStats::ToggleOffPropertyMenu();
 }
 
 void Wall::showConnections()
@@ -147,7 +156,6 @@ void Wall::showConnections()
 	GlobalStats::SetIsShowingConnections(true);
 	connections[0]->show();
 	connections[1]->show();
-	GlobalStats::ToggleOnPropertyMenu();
 }
 
 void Wall::setLineWidth()

@@ -16,7 +16,6 @@ Label::Label(QString text, int x, int y, int textSize, int textWidth)
 	//implicit functions
 	this->setPlainText(text);
 	this->setTextWidth(textWidth);
-
 }
 
 void Label::setSize(int size)

@@ -96,18 +96,6 @@ void GlobalStats::SetLeftMenuPanel(UtilityPanelWidget* panel)
 	GlobalStats::leftMenuPanel = panel;
 }
 
-void GlobalStats::ToggleOnPropertyMenu()
-{
-	GlobalStats::leftMenuPanel->setCurrentIndex(GlobalStats::propertyPanelIndex);
-	GlobalStats::togglePropertyStatus = true;
-}
-
-void GlobalStats::ToggleOffPropertyMenu()
-{
-	GlobalStats::leftMenuPanel->setCurrentIndex(GlobalStats::oldPanelIndex);
-	GlobalStats::togglePropertyStatus = false;
-}
-
 void GlobalStats::SetDoorIcon(QString path)
 {
 	GlobalStats::doorIcon = path;
@@ -191,8 +179,16 @@ void GlobalStats::SetOperationType(SceneOperationType op)
 	}
 }
 
-
-void GlobalStats::ShowPropertyPanel(QWidget* pPanel)
+void GlobalStats::ToggleOnPropertyMenu(QWidget* propertyWidget)
 {
-	//TODO
+	GlobalStats::leftMenuPanel->setCurrentIndex(GlobalStats::propertyPanelIndex);
+	GlobalStats::togglePropertyStatus = true;
+	propertyPanelHolder->AddWidget(new QLabel("tteeeexxxt"));
+}
+
+void GlobalStats::ToggleOffPropertyMenu()
+{
+	GlobalStats::leftMenuPanel->setCurrentIndex(GlobalStats::oldPanelIndex);
+	GlobalStats::togglePropertyStatus = false;
+	propertyPanelHolder->ClearWidgets();
 }

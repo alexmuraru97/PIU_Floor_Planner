@@ -7,7 +7,7 @@
 #include <iostream>
 #include <qgraphicsitem.h>
 #include <QMessageBox>
-
+#include <QLabel>
 class GlobalStats
 {
 	static int wallWidth;
@@ -37,14 +37,13 @@ public:
 	static void SetGraphicsScene(QGraphicsScene* scene);
 	static bool GetIsShowingConnections();
 	static void SetIsShowingConnections(bool val);
-	static void ShowPropertyPanel(QWidget* pPanel);
 	static void SetPropertyPanelHolder(UtilitiesGrid* uGrid);
 	static void SetOldPanelIndex(int idx);
 	static int GetOldPanelIndex();
 	static void SetPropertyPanelIndex(int idx);
 	static int GetPropertyPanelIndex();
 	static void SetLeftMenuPanel(UtilityPanelWidget* panel);
-	static void ToggleOnPropertyMenu();
+	static void ToggleOnPropertyMenu(QWidget* propertyWidget=nullptr);
 	static void ToggleOffPropertyMenu();
 	static void SetDoorIcon(QString path);
 	static QString GetDoorIcon();

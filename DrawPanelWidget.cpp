@@ -154,7 +154,7 @@ void DrawPanelWidget::mousePressEvent(QMouseEvent* event)
 		case GlobalStats::SceneOperationType::INSERT_LABEL:
 			{
 				GlobalStats::SetOperationType(GlobalStats::SceneOperationType::NONE);
-				scene->addItem(new Label("Label1", mousePoint.x(), mousePoint.y(),10,80));
+				scene->addItem(new Label("Label1", mousePoint.x(), mousePoint.y(),10,50));
 			}
 			break;
 
