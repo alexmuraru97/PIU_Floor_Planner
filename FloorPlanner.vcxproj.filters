@@ -113,12 +113,12 @@
     <ClInclude Include="HandlerButton.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="UtilitiesLabel.h">
+      <Filter>Header Files\LeftPanel</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="UtilitiesFurniture.h">
-      <Filter>Header Files\LeftPanel</Filter>
-    </QtMoc>
-    <QtMoc Include="UtilitiesLabel.h">
       <Filter>Header Files\LeftPanel</Filter>
     </QtMoc>
     <QtMoc Include="DoorProperty.h">

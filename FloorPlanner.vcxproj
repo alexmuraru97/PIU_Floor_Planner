@@ -34,7 +34,7 @@
     <ClInclude Include="WallItem.h" />
     <QtMoc Include="WallProperty.h" />
     <ClInclude Include="Window.h" />
-    <QtMoc Include="UtilitiesLabel.h" />
+    <ClInclude Include="UtilitiesLabel.h" />
     <QtMoc Include="UtilitiesFurniture.h" />
   </ItemGroup>
   <ItemGroup>

@@ -29,13 +29,5 @@ UtilitiesLabel::UtilitiesLabel()
 	addLabel->setMinimumSize(100, 50);
 	vlayout->addWidget(addLabel);
 
-	QPushButton* drawDimension = new QPushButton("Draw dimension");
-	drawDimension->setStyleSheet("border-width: 2px; border-radius: 20px");
-	drawDimension->setMinimumSize(100, 50);
-	vlayout->addWidget(drawDimension);
 
-}
-void  UtilitiesLabel::indexChanged(int index)
-{
-	//TODO show the furniture for the selected room 
 }
