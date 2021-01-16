@@ -8,7 +8,7 @@ WallProperty::WallProperty(Wall* wall, QWidget* parent):QWidget(parent)
 	layout.setSpacing(40);
 	
 	widthSlider.setOrientation(Qt::Horizontal);
-	widthSliderLabel.setStyleSheet("");
+	widthSliderLabel.setStyleSheet("border:none");
 	widthSliderLabel.setText(QString("Wall Width (current:") + QString(std::to_string(GlobalStats::GetWallWidth()).c_str()) + QString(")"));
 	widthSlider.setMinimum(1);
 	widthSlider.setMaximum(10);
@@ -17,7 +17,7 @@ WallProperty::WallProperty(Wall* wall, QWidget* parent):QWidget(parent)
 	connect(&widthSlider, &QSlider::valueChanged, this, &WallProperty::wallWidthSetValue);
 
 	gridSnapSlider.setOrientation(Qt::Horizontal);
-	gridSnapLabel.setStyleSheet("");
+	gridSnapLabel.setStyleSheet("border:none");
 	gridSnapLabel.setText(QString("Grid Snap Size (current:") + QString(std::to_string(GlobalStats::GetGridStep()).c_str()) + QString(")"));
 	gridSnapSlider.setMinimum(1);
 	gridSnapSlider.setMaximum(50);

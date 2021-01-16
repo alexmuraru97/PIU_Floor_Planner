@@ -1,7 +1,6 @@
 #include "Label.h"
 
-#include <qtextoption.h>
-#include <qtextdocument.h>
+
 
 Label::Label(QString text, int x, int y, int textSize, int textWidth)
 {
@@ -10,7 +9,7 @@ Label::Label(QString text, int x, int y, int textSize, int textWidth)
 	
 	setSize(textSize);
 	setBold(true);
-	setColor(QColor(0, 0, 0));
+	setDefaultTextColor(QColor(0, 0, 0));
 	setAlignment(Qt::AlignCenter);
 	
 	//implicit functions
@@ -30,11 +29,12 @@ void Label::setBold(bool bold)
 	updateFontData();
 }
 
-void Label::setColor(QColor color)
+int Label::getFontSize()
 {
-	textColor = color;
-	this->setDefaultTextColor(textColor);
+	return this->font.pixelSize();
 }
+
+
 
 void Label::updateFontData()
 {
@@ -65,6 +65,6 @@ void Label::mouseDoubleClickEvent(QGraphicsSceneMouseEvent* event)
 	}
 	else
 	{
-		GlobalStats::ToggleOnPropertyMenu();
+		GlobalStats::ToggleOnPropertyMenu(new LabelProperty(this));
 	}
 }

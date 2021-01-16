@@ -24,6 +24,7 @@
     <ClInclude Include="HandlerButton.h" />
     <ClInclude Include="InOutMenuWidget.h" />
     <ClInclude Include="Label.h" />
+    <QtMoc Include="LabelProperty.h" />
     <ClInclude Include="MenuButton.h" />
     <ClInclude Include="MenuWidget.h" />
     <ClInclude Include="UtilitiesDraw.h" />
@@ -50,6 +51,7 @@
     <ClCompile Include="HandlerButton.cpp" />
     <ClCompile Include="InOutMenuWidget.cpp" />
     <ClCompile Include="Label.cpp" />
+    <ClCompile Include="LabelProperty.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MenuButton.cpp" />
     <ClCompile Include="MenuWidget.cpp" />

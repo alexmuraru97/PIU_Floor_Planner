@@ -7,7 +7,7 @@ FurnitureProperty::FurnitureProperty(Furniture* furniture, QWidget* parent):QWid
 	layout.setAlignment(Qt::AlignTop|Qt::AlignHCenter);
 	layout.setSpacing(20);
 
-	widthLabel.setStyleSheet("");
+	widthLabel.setStyleSheet("border:none");
 	widthLabel.setText(QString("Furniture item Width (current:") + QString(std::to_string(furniture->pixmap().width()).c_str()) + QString(")"));
 	widthTextBox.setText(QString(std::to_string(furniture->pixmap().width()).c_str()));
 	widthTextBox.setFixedWidth(300);
@@ -20,7 +20,7 @@ FurnitureProperty::FurnitureProperty(Furniture* furniture, QWidget* parent):QWid
 	layout.addWidget(&widthTextBox);
 	connect(&widthTextBox, &QLineEdit::textChanged, this, &FurnitureProperty::furnitureWidthSetValue);
 
-	heightLabel.setStyleSheet("");
+	heightLabel.setStyleSheet("border:none");
 	heightLabel.setText(QString("Furniture item Height (current:") + QString(std::to_string(furniture->pixmap().height()).c_str()) + QString(")"));
 	heightTextBox.setText(QString(std::to_string(furniture->pixmap().height()).c_str()));
 	heightTextBox.setFixedWidth(300);
