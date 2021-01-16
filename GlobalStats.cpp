@@ -145,6 +145,7 @@ void GlobalStats::ExportProject()
 
 void GlobalStats::ClearScene()
 {
+	ToggleOffPropertyMenu();
 	QMessageBox msgBox;
 	msgBox.setText("Are you sure you want to clear the scene?");
 	msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);

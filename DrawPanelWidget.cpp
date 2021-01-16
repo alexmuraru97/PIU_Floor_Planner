@@ -88,6 +88,7 @@ void DrawPanelWidget::keyPressEvent(QKeyEvent* event)
 
 void DrawPanelWidget::mousePressEvent(QMouseEvent* event)
 {
+	GlobalStats::ToggleOffPropertyMenu();
 	if(event->button()!=Qt::RightButton)
 	{
 		event->ignore();
