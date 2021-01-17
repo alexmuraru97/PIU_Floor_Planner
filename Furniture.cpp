@@ -21,6 +21,8 @@ void Furniture::SetHeight(int height)
 	this->setPixmap(QPixmap::fromImage(img).scaled(pixmap().width(), height, Qt::IgnoreAspectRatio));
 }
 
+
+
 void Furniture::mouseDoubleClickEvent(QGraphicsSceneMouseEvent* event)
 {
 	if (event->button() != Qt::LeftButton)
@@ -37,6 +39,16 @@ void Furniture::mouseDoubleClickEvent(QGraphicsSceneMouseEvent* event)
 	{
 		GlobalStats::ToggleOnPropertyMenu(new FurnitureProperty(this));
 	}
+}
+
+void Furniture::FlipVertically()
+{
+	this->setPixmap(pixmap().transformed(QTransform().scale(1, -1)));
+}
+
+void Furniture::FlipHorizontally()
+{
+	this->setPixmap(pixmap().transformed(QTransform().scale(-1, 1)));
 }
 
 Furniture::~Furniture()

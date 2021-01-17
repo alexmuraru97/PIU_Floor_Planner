@@ -14,6 +14,8 @@ public:
 	Furniture(int x, int y,QString path);
 	void SetWidth(int width);
 	void SetHeight(int height);
+	void FlipVertically();
+	void FlipHorizontally();
 	void mouseDoubleClickEvent(QGraphicsSceneMouseEvent* event) override;
 	~Furniture();
 };

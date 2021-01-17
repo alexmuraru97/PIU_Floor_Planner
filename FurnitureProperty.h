@@ -16,10 +16,15 @@ private:
 	QLabel heightLabel;
 	QLineEdit widthTextBox;
 	QLineEdit heightTextBox;
+
+	QPushButton* flipVertButton;
+	QPushButton* flipHotizontButton;
 public:
 	FurnitureProperty(Furniture* furniture, QWidget* parent = nullptr);
 public slots:
 	void furnitureWidthSetValue();
 	void furnitureHeightSetValue();
+	void FlipVertically();
+	void FlipHorizontally();
 };
 

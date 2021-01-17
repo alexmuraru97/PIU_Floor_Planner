@@ -35,6 +35,25 @@ FurnitureProperty::FurnitureProperty(Furniture* furniture, QWidget* parent):QWid
 
 	widthTextBox.setValidator(new QIntValidator(0, 10000));
 	heightTextBox.setValidator(new QIntValidator(0, 10000));
+
+
+	flipVertButton = new QPushButton("Flip Vertically");
+	flipVertButton->setFixedHeight(60);
+	flipVertButton->setStyleSheet("border-width: 2px; border-radius: 20px");
+	QFont font = flipVertButton->font();
+	font.setPointSize(14);
+	flipVertButton->setFont(font);
+	layout.addWidget(flipVertButton);
+	connect(flipVertButton, &QPushButton::pressed, this, &FurnitureProperty::FlipVertically);
+
+	flipHotizontButton = new QPushButton("Flip Horizontally");
+	flipHotizontButton->setFixedHeight(60);
+	flipHotizontButton->setStyleSheet("border-width: 2px; border-radius: 20px");
+	QFont font1 = flipHotizontButton->font();
+	font1.setPointSize(14);
+	flipHotizontButton->setFont(font1);
+	layout.addWidget(flipHotizontButton);
+	connect(flipHotizontButton, &QPushButton::pressed, this, &FurnitureProperty::FlipHorizontally);
 }
 
 void FurnitureProperty::furnitureWidthSetValue()
@@ -53,4 +72,14 @@ void FurnitureProperty::furnitureHeightSetValue()
 		std::cout << heightTextBox.text().toStdString() << std::endl;
 		furniture->SetHeight(heightTextBox.text().toInt());
 	}
+}
+
+void FurnitureProperty::FlipVertically()
+{
+	this->furniture->FlipVertically();
+}
+
+void FurnitureProperty::FlipHorizontally()
+{
+	this->furniture->FlipHorizontally();
 }
