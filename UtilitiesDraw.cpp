@@ -43,6 +43,14 @@ UtilitiesDraw::UtilitiesDraw()
 	drawWall->setMinimumSize(100, 50);
 	vlayout->addWidget(drawWall);
 
+
+	HandlerButton* splitWall = new HandlerButton(GlobalStats::SceneOperationType::SPLIT_WALL, nullptr, this);
+	splitWall->setText("Split Wall");
+	splitWall->setStyleSheet("border-width: 2px; border-radius: 20px");
+	splitWall->setMinimumSize(100, 50);
+	vlayout->addWidget(splitWall);
+
+	
 	vlayout->addWidget(place);
 
 	HandlerButton* placeDoor = new HandlerButton(GlobalStats::SceneOperationType::INSERT_DOOR, nullptr, this);
@@ -56,5 +64,7 @@ UtilitiesDraw::UtilitiesDraw()
 	placeWindows->setStyleSheet("border-width: 2px; border-radius: 20px");
 	placeWindows->setMinimumSize(100, 50);
 	vlayout->addWidget(placeWindows);
+
+
 
 }
